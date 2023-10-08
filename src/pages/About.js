@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Markdown from 'markdown-to-jsx';
 
 import Main from '../layouts/Main';
+import Header from '../components/Header/Header';
 
 const About = () => {
   const [markdown, setMarkdown] = useState('');
@@ -21,19 +22,22 @@ const About = () => {
     .filter((s) => s.length).length;
 
   return (
-    <Main title='About' description='Learn about Aman Thakkar'>
-      <article className='post markdown' id='about'>
-        <header>
-          <div className='title'>
-            <h2>
-              <Link to='/about'>About Me</Link>
-            </h2>
-            <p>(in about {count} words)</p>
-          </div>
-        </header>
-        <Markdown>{markdown}</Markdown>
-      </article>
-    </Main>
+    <>
+      <Header />
+      <Main title='About' description='Learn about Aman Thakkar'>
+        <article className='post markdown' id='about'>
+          <header>
+            <div className='title'>
+              <h2>
+                <Link to='/about'>About Me</Link>
+              </h2>
+              <p>(in about {count} words)</p>
+            </div>
+          </header>
+          <Markdown>{markdown}</Markdown>
+        </article>
+      </Main>
+    </>
   );
 };
 

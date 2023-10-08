@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Main from '../layouts/Main';
+import Header from '../components/Header/Header';
 
 import Education from '../components/Resume/Education';
 import Experience from '../components/Resume/Experience';
@@ -24,30 +25,33 @@ const sections = {
 };
 
 const Resume = () => (
-  <Main
-    title='Resume'
-    description="Aman Thakkar's Resume. Smile Identity, Arthena, Matroid, YC, Skeptical Investments, Stanford ICME, Planet, and Facebook."
-  >
-    <article className='post' id='resume'>
-      <header>
-        <div className='title'>
-          <h2>
-            <Link to='resume'>Resume</Link>
-          </h2>
-          <div className='link-container'>
-            {Object.keys(sections).map((sec) => (
-              <h4 key={sec}>
-                <a href={`#${sec.toLowerCase()}`}>{sec}</a>
-              </h4>
-            ))}
+  <>
+    <Header />
+    <Main
+      title='Resume'
+      description="Aman Thakkar's Resume. Smile Identity, Arthena, Matroid, YC, Skeptical Investments, Stanford ICME, Planet, and Facebook."
+    >
+      <article className='post' id='resume'>
+        <header>
+          <div className='title'>
+            <h2>
+              <Link to='resume'>Resume</Link>
+            </h2>
+            <div className='link-container'>
+              {Object.keys(sections).map((sec) => (
+                <h4 key={sec}>
+                  <a href={`#${sec.toLowerCase()}`}>{sec}</a>
+                </h4>
+              ))}
+            </div>
           </div>
-        </div>
-      </header>
-      {Object.entries(sections).map(([name, Section]) => (
-        <Section key={name} />
-      ))}
-    </article>
-  </Main>
+        </header>
+        {Object.entries(sections).map(([name, Section]) => (
+          <Section key={name} />
+        ))}
+      </article>
+    </Main>
+  </>
 );
 
 export default Resume;

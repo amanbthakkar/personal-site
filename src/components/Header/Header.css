@@ -1,0 +1,24 @@
+/* Style for the container div */
+.bg-success {
+  background-color: #035716; /* Set your desired background color */
+  padding: 2px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.info-icon {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.info-bar {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 2px;
+  color: white;
+}
