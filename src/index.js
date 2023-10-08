@@ -3,11 +3,7 @@ import { createRoot, hydrateRoot } from 'react-dom/client';
 import App from './App';
 
 // See https://reactjs.org/docs/strict-mode.html
-const StrictApp = () => (
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const StrictApp = () => <App />;
 
 const rootElement = document.getElementById('root');
 

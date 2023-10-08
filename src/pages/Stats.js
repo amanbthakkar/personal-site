@@ -7,14 +7,13 @@ import Personal from '../components/Stats/Personal';
 import Site from '../components/Stats/Site';
 
 const Stats = () => (
-  <Main
-    title="Stats"
-    description="Some statistics about Michael D'Angelo and mldangelo.com"
-  >
-    <article className="post" id="stats">
+  <Main title='Stats' description='Some statistics about Aman'>
+    <article className='post' id='stats'>
       <header>
-        <div className="title">
-          <h2><Link to="/stats">Stats</Link></h2>
+        <div className='title'>
+          <h2>
+            <Link to='/stats'>Stats</Link>
+          </h2>
         </div>
       </header>
       <Personal />

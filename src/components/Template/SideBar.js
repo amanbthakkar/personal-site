@@ -6,36 +6,50 @@ import ContactIcons from '../Contact/ContactIcons';
 const { PUBLIC_URL } = process.env; // set automatically from package.json:homepage
 
 const SideBar = () => (
-  <section id="sidebar">
-    <section id="intro">
-      <Link to="/" className="logo">
-        <img src={`${PUBLIC_URL}/images/me.jpg`} alt="" />
+  <section id='sidebar'>
+    <section id='intro'>
+      <Link to='/' className='logo'>
+        <img src={`${PUBLIC_URL}/images/me.jpg`} alt='' />
       </Link>
       <header>
-        <h2>Michael D&apos;Angelo</h2>
-        <p><a href="mailto:michael@mldangelo.com">michael@mldangelo.com</a></p>
+        <h2>Aman Thakkar</h2>
+        <p>
+          <a href='mailto:amanbthakkar@gmail.com'>amanbthakkar@gmail.com</a>
+        </p>
       </header>
     </section>
 
-    <section className="blurb">
+    <section className='blurb'>
       <h2>About</h2>
-      <p>Hi, I&apos;m Michael. I am a <a href="https://icme.stanford.edu/">Stanford ICME</a> graduate, YC Alumni,
-        and the VP of Engineering at <a href="https://smileidentity.com">Smile Identity</a>. Previously,
-        I was the co-founder and CTO of <a href="https://arthena.com">Arthena</a>
-        , co-founder of <a href="https://matroid.com">Matroid</a>, and worked at
-        {' '}<a href="https://planet.com">Planet</a> and <a href="https://facebook.com">Facebook</a>.
+      <p>
+        Hi, I am Aman! I'm a Computer Science grad student at the University of
+        California, Irvine. I'll be graduating in December of 2023! Previously,
+        I was a software developer at Barclays where I worked after completing
+        my Bachelor's in Computer Engineering in Mumbai, India. I am really
+        passionate about technology, finance, and their intersection! Please do
+        check out my resume, projects, and blog posts :)
       </p>
-      <ul className="actions">
+      <ul className='actions'>
         <li>
-          {!window.location.pathname.includes('/resume') ? <Link to="/resume" className="button">Learn More</Link> : <Link to="/about" className="button">About Me</Link>}
+          {!window.location.pathname.includes('/resume') ? (
+            <Link to='/resume' className='button'>
+              Learn More
+            </Link>
+          ) : (
+            <Link to='/about' className='button'>
+              About Me
+            </Link>
+          )}
         </li>
       </ul>
     </section>
 
-    <section id="footer">
+    {/* <section id='footer'>
       <ContactIcons />
-      <p className="copyright">&copy; Michael D&apos;Angelo <Link to="/">mldangelo.com</Link>.</p>
-    </section>
+      <p className='copyright'>
+        &copy; Michael D&apos;Angelo <Link to='/'>mldangelo.com</Link>.
+      </p>
+    </section> */}
   </section>
 );
 

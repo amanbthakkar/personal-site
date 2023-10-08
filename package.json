@@ -1,11 +1,11 @@
 {
   "name": "personal-site",
   "version": "4.0.0",
-  "homepage": "https://mldangelo.com/",
+  "homepage": "https://amanthakkar.com/",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mldangelo/personal-site.git"
+    "url": "https://github.com/amanbthakkar/personal-site.git"
   },
   "engines": {
     "node": ">=16.x"
@@ -27,6 +27,7 @@
     "markdown-to-jsx": "^7.3.2",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.9.0",
     "react-burger-menu": "^3.0.9",
     "react-dom": "^18.2.0",
     "react-ga": "^3.3.1",
