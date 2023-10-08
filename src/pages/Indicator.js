@@ -18,7 +18,7 @@ function Indicator() {
         title='Bitcoin Indicator'
         description='A little bit about an indicator I created for Bitcoin'
       >
-        <div className='paragraph-padding'>
+        <div>
           <article className='post' id='projects'>
             <header>
               <div className='title'>

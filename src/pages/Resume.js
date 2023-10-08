@@ -19,18 +19,15 @@ import { skills, categories } from '../data/resume/skills';
 const sections = {
   Education: () => <Education data={degrees} />,
   Experience: () => <Experience data={work} />,
-  Skills: () => <Skills skills={skills} categories={categories} />,
-  Courses: () => <Courses data={courses} />,
-  References: () => <References />,
+  // Skills: () => <Skills skills={skills} categories={categories} />,
+  // Courses: () => <Courses data={courses} />,
+  // References: () => <References />,
 };
 
 const Resume = () => (
   <>
     <Header />
-    <Main
-      title='Resume'
-      description="Aman Thakkar's Resume. Smile Identity, Arthena, Matroid, YC, Skeptical Investments, Stanford ICME, Planet, and Facebook."
-    >
+    <Main title='Resume' description="Aman Thakkar's Resume.">
       <article className='post' id='resume'>
         <header>
           <div className='title'>

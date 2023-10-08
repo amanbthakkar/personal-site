@@ -43,8 +43,9 @@ const Header = () => {
   return (
     <div className='bg-success'>
       <span className='text-center'>
-        Unique Website Visits: {visitorCount}{' '}
+        Unique Website Visits (since Oct '23'): {visitorCount}{' '}
         <span
+          style={{ paddingLeft: '3px' }}
           className='info-icon'
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}

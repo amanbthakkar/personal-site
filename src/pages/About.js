@@ -31,10 +31,10 @@ const About = () => {
               <h2>
                 <Link to='/about'>About Me</Link>
               </h2>
-              <p>(in about {count} words)</p>
+              <p>Coming soon!</p>
             </div>
           </header>
-          <Markdown>{markdown}</Markdown>
+          {/* <Markdown>{markdown}</Markdown> */}
         </article>
       </Main>
     </>
