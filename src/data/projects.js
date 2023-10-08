@@ -1,26 +1,26 @@
 // TODO Add a couple lines about each project
 const data = [
   {
-    title: 'Nearest Dollar',
-    subtitle: '2015 BVP Hackathon',
+    title: 'amanthakkar.com',
+    subtitle: 'This personal website + a live Bitcoin indicator',
     image: '/images/projects/nearestdollar.jpg',
     date: '2015-11-20',
     desc:
-      'Built for a social impact hackathon. '
-      + 'NearestDollar connected to your bank accounts, credit cards, '
-      + 'or debit cards and rounded up your purchases to donate the balance to '
-      + 'the charity of your choice.',
+      'Built for a social impact hackathon. ' +
+      'NearestDollar connected to your bank accounts, credit cards, ' +
+      'or debit cards and rounded up your purchases to donate the balance to ' +
+      'the charity of your choice.',
   },
   {
-    title: 'Harvest',
-    subtitle: 'Won 3rd. place in 2015 Techcrunch Disrupt SF Hackathon',
+    title: 'Subscribite (Subscribe + Bite)',
+    subtitle: 'Capstone project at UC Irvine',
     link: 'https://devpost.com/software/harvest',
     image: '/images/projects/harvest.jpg',
-    date: '2015-09-20',
+    date: '2023-06-20',
     desc:
-      'Won ~ $7000 in prizes for an advanced, low cost monitoring solution '
-      + 'for crops. Harvest was designed to catch irrigation leaks, overwatering, '
-      + 'and nutrient deficiencies at an affordable price for the developing world.',
+      'Designed, developed, and deployed cross-platform mobile app for cost-effective, scheduled grocery subscriptions and deliveries ' +
+      'Incorporated REST APIs with Node.js backend and efficient state management for smooth cart manipulation and order processing ' +
+      'Deployed Docker containers to an EC2 instance by leveraging an automated backend workflow powered by GitHub Actions',
   },
   {
     title: 'Space Potato',
@@ -29,9 +29,9 @@ const data = [
     image: '/images/projects/spacepotato.jpg',
     date: '2015-06-28',
     desc:
-      'Launched a potato battery powered weather balloon with two cameras '
-      + 'and gps transponder. Resulting photos were published in a coffee table book. '
-      + 'You can email me for a copy.',
+      'Launched a potato battery powered weather balloon with two cameras ' +
+      'and gps transponder. Resulting photos were published in a coffee table book. ' +
+      'You can email me for a copy.',
   },
   {
     title: 'Cat Detector',
@@ -39,9 +39,9 @@ const data = [
     image: '/images/projects/catdetector.jpg',
     date: '2015-05-15',
     desc:
-      'Trained a convolutional neural network to classify between ~ 80 cats breeds. '
-      + 'Over 60,000 cats were classified before server bills made the project too expensive '
-      + 'to continue hosting.',
+      'Trained a convolutional neural network to classify between ~ 80 cats breeds. ' +
+      'Over 60,000 cats were classified before server bills made the project too expensive ' +
+      'to continue hosting.',
   },
 ];
 

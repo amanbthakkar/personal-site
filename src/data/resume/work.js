@@ -15,7 +15,6 @@ const work = [
   {
     name: 'Glidewell Dental',
     position: 'Software Engineer Intern',
-    url: 'https://smileidentity.com',
     startDate: '2023-06-19',
     endDate: '2023-09-01',
     summary: `Glidewell Dental is a dental laboratory based in Irvine, California. They provide a 
@@ -34,7 +33,6 @@ const work = [
   {
     name: 'Barclays Global Service Center',
     position: 'Software Developer',
-    url: 'http://skepticalinvestments.biz',
     startDate: '2019-07-19',
     summary: `Barclays Global Service Center (BGSC) is a global capability center of Barclays Bank PLC, providing best-in-class Technology, Operations, and Functions services 
     to Barclays businesses and customers globally. BGSC is headquartered in Pune, India, with operations in other countries as well. I worked with Payment Sanctions in the Financial Crimes
@@ -53,7 +51,6 @@ const work = [
   {
     name: 'PredCred',
     position: 'Intern',
-    url: 'https://arthena.com',
     startDate: '2016-10-01',
     endDate: '2017-10-01',
     summary: `PredCred was a startup that aimed to game-ify sports betting in India. It enabled users to stake virtual currencies on outcomes of sports games 
