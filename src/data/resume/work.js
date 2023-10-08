@@ -13,157 +13,53 @@
  */
 const work = [
   {
-    name: 'Smile Identity',
-    position: 'VP Engineering & Head of AI',
-    url: 'https://smileidentity.com',
-    startDate: '2022-01-01',
-    summary: `Smile builds machine learning APIs to compare user submitted photos to ID documents. Our APIs are
-    used by hundreds of thousands of people every day to access financial services. As VP of Engineering,
-    I provide technical leadership on high-impact projects, influence and coach a distributed team of engineers,
-    and facilitate alignment and clarity across teams on goals, outcomes, and timelines. I was promoted
-    from Director of Engineering to VP of Engineering in April 2022, and then to VP of Engineering and Head
-    of AI in November 2022. I lead a 20+ person engineering org. I directly manage ~8 engineers and spend
-    >50% of my time writing code.`,
-    highlights: [
-      'Redesigned engineering processes for bug tracking, meetings, and standups. Improved culture for code reviews, blameless post-mortems, and retrospectives.',
-      'Re-architected engineering hiring and onboarding processes. Recruited several strong engineers.',
-      'Reorged engineering teams to focus on product delivery. Created a new team to focus on ML infrastructure.',
-      'Lead re-design of internal APIs for inference. Built new computer vision pipelines for industry leading certifications (NIST/iBeta liveness).',
-      'Pitched, designed, developed, deployed, and maintain a fraud detection product based on 1-N facial recognition using embeddings and vector search.',
-    ],
-  },
-  {
-    name: 'Skeptical Investments',
-    position: 'Co-founder',
-    url: 'http://skepticalinvestments.biz',
-    startDate: '2017-04-01',
-    summary: `Skeptical Investments is a micro-vc fund focused on Angel, Seed, and Series-A
-    YC companies.`,
-    highlights: [
-      'Created the InstaSafe. Fast, automated investment docs for YC companies.',
-      'Advise several startups in the fund.',
-    ],
-  },
-  {
-    name: 'Arthena',
-    position: 'Co-founder & C.T.O.',
-    url: 'https://arthena.com',
-    startDate: '2014-01-01',
-    endDate: '2022-01-01',
-    summary: `Arthena is a Series A Company funded by <a href="https://www.anthemis.com/">Athemis</a>,
-    <a href="https://foundationcapital.com">Foundation Capital</a>, and <a href="https://ycombinator.com/">YC</a>.
-    We develop quantitative strategies to predict the value of fine art and build investment products.
-    I ran a 20-person product and engineering org for 8 years. We were acquired by
-    <a href="https://www.masterworks.com/">Masterworks</a> in 2023.`,
-    highlights: [
-      'Built production, online, end-to-end optimized machine learning pipelines for time-series prediction.',
-      'Designed micro-service architecture around: data collection, data integrity, feature engineering, research, strategy, backtesting, deployment, and reporting.',
-      "Set and communicated team priorities that supported the broader organization's goals. Aligned strategy, processes, and decision-making across teams.",
-      "Set clear expectations with individuals based on their level and role and aligned them to the broader organization's goals. Met regularly with individuals to discuss performance and development, and provided feedback and coaching.",
-      'Developed the long-term technical vision and roadmap within, and often beyond, the scope of my teams. Evolved the roadmap to meet anticipated future requirements and infrastructure needs.',
-    ],
-  },
-  {
-    name: 'Enveritas',
-    position: 'ML Engineering Contractor',
-    url: 'http://enveritas.org',
-    startDate: '2016-09-01',
-    endDate: '2018-01-01',
-    summary: `Enveritas is a non-profit that works with coffee farmers to improve their livelihoods.
-    I joined on day one and helped build a variety of tools to collect and analyze data. I also advised
-    on technical strategy, helped hire engineers, and advised on their YC application.`,
-    highlights: [
-      'Trained a model for the Brazilian Coffee Scenes Dataset with better than state of the art accuracy.',
-      'Collected training sets on the ground in Uganda. Built dashboards to visualize work of surveyors using Flask, React, and D3.',
-      'Performed supporting analysis to ensure data integrity using Pandas, t-SNE, SVM\'s, and other techniques.',
-    ],
-  },
-  {
-    name: 'Zenysis',
-    position: 'Software Engineering Contractor',
-    url: 'https://zenysis.com',
-    startDate: '2016-02-01',
-    endDate: '2016-03-01',
-    summary: `Zenysis develops data analysis and visualization tools for government agencies and international organizations.
-    Their solutions help improve decision-making by integrating and analyzing large-scale datasets from various sources.
-    I was the second contributor to the codebase. We built data visualization tools and tackled complex data ingestion
-    challenges for the Ethiopian Ministry of Health.`,
-    highlights: [
-      'Worked in Addis Ababa for the Ethiopian Ministry of Health and built data visualization tools in React and Flask.',
-      'Ingested multiple databases with different alphabets, calendars, and without official spellings of geographic locations.',
-    ],
-  },
-  {
-    name: 'Matroid',
-    position: 'Co-founder',
-    url: 'https://matroid.com',
-    startDate: '2015-07-01',
-    endDate: '2016-01-01',
-    summary: `Matroid is a computer vision platform for creating and deploying detectors. Detectors help customers identify objects,
-    events, or patterns in images and videos without requiring machine learning or coding expertise. I played a crucial role in
-    defining the company's vision. I was responsible for architecting and building the initial product. I left shortly after the
-    Series A to focus on Arthena.`,
-    highlights: [
-      'Developed end to end machine learning pipeline to train visual classifiers from keywords using Caffe, Node.JS, Redis, MongoDB, and other technologies.',
-    ],
-  },
-  {
-    name: 'Planet',
-    position: 'Missions Intern',
-    url: 'https://planet.com',
-    startDate: '2014-06-01',
-    endDate: '2015-01-01',
-    highlights: [
-      'Built models to improve image quality, signal to noise ratio, and dynamic range.',
-      'Performed statistical analysis of image quality in Matlab and Python.  Developed flight software in C++.',
-      'Organized first hackathon, prototyped hardware, and designed and built photography equipment for rocket launches.',
-    ],
-  },
-  {
-    name: 'Planetary Resources',
-    position: 'Avionics Intern',
-    startDate: '2014-01-01',
-    endDate: '2014-05-01',
-    url: 'http://planetaryresources.com',
-    highlights: [
-      'Developed simulations in Matlab for Attitude Determination and Control Subsystem.',
-      'Developed processes for in lab testing and characterization of various subsystems.',
-      'Assembled flight hardware in cleanroom.',
-    ],
-  },
-  {
-    name: 'Facebook',
+    name: 'Glidewell Dental',
     position: 'Software Engineer Intern',
-    url: 'https://facebook.com',
-    startDate: '2013-06-01',
-    endDate: '2013-09-01',
+    url: 'https://smileidentity.com',
+    startDate: '2023-06-19',
+    endDate: '2023-09-01',
+    summary: `Glidewell Dental is a dental laboratory based in Irvine, California. They provide a 
+    wide range of dental lab services, including crowns and bridges, implant prostherics, dentures, and much more.
+    Though a dental company, Glidewell is known for its use of technology to improve the quality, convenience 
+    and cost-effectiveness of its services. I worked on the mobile app for the Chairside Milling System, where I rapidly 
+    added new features to the existing Angular/Ionic app while also leading the migration from Angular to React Native with
+    a re-design of the app's architecture.`,
     highlights: [
-      'Developed software in python for automated testing of servers.',
-      'Performed statistical analysis with R, HIVE to assist in triage of malfunctioning servers.',
-      'Worked with vendors and ODM\'s during triage to assist in risk mitigation.',
+      'Re-designed front-end architecture of mobile app by independently leading migration from Angular to React Native',
+      'Achieved 50% reduction in crown validation time by integrating 3D renders for the manufactured crowns within the app using Three.js',
+      'Minimized backend server load through real-time communication of mobile app with milling devices for status updates using web sockets',
+      'Slashed hardware bug reporting time from a day or more to just a few seconds with a new feature allowing dentints to detail issues as well as submit photos ',
     ],
   },
   {
-    name: 'SEDS-USA',
-    position: 'At Large Board Member',
-    url: 'http://seds.org',
-    startDate: '2013-10-01',
-    endDate: '2014-10-01',
+    name: 'Barclays Global Service Center',
+    position: 'Software Developer',
+    url: 'http://skepticalinvestments.biz',
+    startDate: '2019-07-19',
+    summary: `Barclays Global Service Center (BGSC) is a global capability center of Barclays Bank PLC, providing best-in-class Technology, Operations, and Functions services 
+    to Barclays businesses and customers globally. BGSC is headquartered in Pune, India, with operations in other countries as well. I worked with Payment Sanctions in the Financial Crimes
+    Division, on multiple projects and internal services.`,
     highlights: [
-      'Elected to Board of Directors of the USA\'s largest student space advocacy group based on 5+ years of work with SEDS.',
-      'Responsibilities included: organizational strategy, conference presentations, fundraising, special projects, promoting SEDS nationally and internationally, and photographing conferences.',
+      'Saved USD 30,000 in capital costs by developing an in-house website using React for Operations to flag fraudulent transactions',
+      'Led cross-functional effort to develop, test, and deploy new payment route configurations using Fircosoft for real-time,cross-border euro transfers with over 6 million annual transactions and sub-second processing time',
+      'Reduced manual effort by approximately 75% by creating Python scripts to detect live data breaches in test environments',
+      'Boosted analysts’ efficiency by 30% with Python parser to process over 50 types of raw payment files into customizable reports',
+      'Received “Recognition of Excellence” for contributions to a challenging ESQL project that modified internal sanctions broker',
+      'Designed SOPs and provisioned new environment for ad-hoc rescreening tasks right from data extraction to validation of results',
+      'Enhanced software consistency via automated Chef deployments, streamlining infrastructure operations across 7 environments',
+      'Achieved 5x increase in code coverage through the utilization of Selenium and Cucumber for test case automation',
     ],
   },
   {
-    name: 'UB Nanosatellite Program',
-    position: 'Co-founder, Program Manager',
-    url: 'https://ubnl.space/',
-    startDate: '2010-10-01',
-    endDate: '2012-06-01',
-    highlights: [
-      'Coauthored grant to build a multi-spectral imaging satellite as part of the AFRL University Nanosatellite Program.',
-      'Lead a team of 60 students through satellite development life cycle. Served as a technical expert, acquired intimate working knowledge of satellite subsystems.  Solicited funding through NASA, AFOSR, and several corporate sponsors.',
-    ],
+    name: 'PredCred',
+    position: 'Intern',
+    url: 'https://arthena.com',
+    startDate: '2016-10-01',
+    endDate: '2017-10-01',
+    summary: `PredCred was a startup that aimed to game-ify sports betting in India. It enabled users to stake virtual currencies on outcomes of sports games 
+    and win more virtual currencies in return. These returns could be used to redeem coupons or prizes with our merchant partners. I wore multiple hats as an Intern here inluding development, 
+    user base analysis, customer support, marketing, pitching to investors, etc.`,
+    highlights: [,],
   },
 ];
 
