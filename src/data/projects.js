@@ -5,7 +5,7 @@ const data = [
     subtitle: 'This personal website + a live Bitcoin indicator',
     link: 'amanthakkar.com',
     image: '/images/projects/amanthakkar.png',
-    date: '2015-11-20',
+    date: '2023-10-20',
     desc:
       "A full-stack website showing what you're reading here.  Front-end is hosted using Github Pages. " +
       'The unique visits count is done through a self-hosted backend on AWS with containerized Node and Redis. ' +

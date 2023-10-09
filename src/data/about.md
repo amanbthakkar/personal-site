@@ -10,7 +10,7 @@ During COVID when I was "Working From Home", I got extremely interested in finan
 
 # Blog Posts
 
-During the above time period I wrote a few blog posts on mathematical models related to pricing of cryptocurrencies, and am particularly fond of one related to the Power Law Oscillator. An [entire page](https://www.amanthakkar.com/btc-indicator) on this site is dedicated to it. I wrote some other posts too, which you can find [here](https://medium.com/@amanbthakkar).
+During the time I talked about above, I wrote a few blog posts on mathematical models related to pricing of cryptocurrencies, and am particularly fond of one related to the Power Law Oscillator. An [entire page](https://www.amanthakkar.com/btc-indicator) on this site is dedicated to it. I wrote some other posts too, which you can find [here](https://medium.com/@amanbthakkar).
 
 This website was actually first borne out of a desire to not need to run the [Python script for the oscillator](https://github.com/amanbthakkar/crypto_finance/blob/master/Power%20Oscillator.ipynb) daily on my local machine.
 
