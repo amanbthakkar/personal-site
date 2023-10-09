@@ -10,7 +10,7 @@ import data from '../data/projects';
 const Projects = () => (
   <>
     <Header />
-    <Main title='Projects' description="Learn about Aman's projects.">
+    <Main title='Projects' description="Learn about Aman's blog posts.">
       <article className='post' id='projects'>
         <header>
           <div className='title'>
@@ -18,8 +18,8 @@ const Projects = () => (
               <Link to='/projects'>Projects</Link>
             </h2>
             <p>
-              A selection of projects that I&apos;m not too ashamed of (Coming
-              soon...)
+              I wrote some blog posts. Coming soon... (visit my{' '}
+              <a href='https://medium.com/@amanbthakkar'>Medium</a> till then)
             </p>
           </div>
         </header>

@@ -26,11 +26,6 @@ const Index = () => (
           <Link to='/resume'>resume</Link>, <Link to='/projects'>projects</Link>
           , or <Link to='/contact'>contact</Link> me.
         </p>
-        <p>
-          {' '}
-          Source available{' '}
-          <a href='https://github.com/mldangelo/personal-site'>here</a>.
-        </p>
       </article>
     </Main>
   </>

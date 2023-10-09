@@ -3,45 +3,63 @@ const data = [
   {
     title: 'amanthakkar.com',
     subtitle: 'This personal website + a live Bitcoin indicator',
-    image: '/images/projects/nearestdollar.jpg',
+    link: 'amanthakkar.com',
+    image: '/images/projects/amanthakkar.png',
     date: '2015-11-20',
     desc:
-      'Built for a social impact hackathon. ' +
-      'NearestDollar connected to your bank accounts, credit cards, ' +
-      'or debit cards and rounded up your purchases to donate the balance to ' +
-      'the charity of your choice.',
+      "A full-stack website showing what you're reading here.  Front-end is hosted using Github Pages. " +
+      'The unique visits count is done through a self-hosted backend on AWS with containerized Node and Redis. ' +
+      "I've also used Nginx and Certbot for enabling HTTPS communication. " +
+      'Domain and subdomain purchased through Squarespace. ',
   },
   {
     title: 'Subscribite (Subscribe + Bite)',
     subtitle: 'Capstone project at UC Irvine',
-    link: 'https://devpost.com/software/harvest',
-    image: '/images/projects/harvest.jpg',
+    link: 'https://github.com/amanbthakkar/SubscriBite',
+    image: '/images/projects/flashloan.png',
     date: '2023-06-20',
     desc:
-      'Designed, developed, and deployed cross-platform mobile app for cost-effective, scheduled grocery subscriptions and deliveries ' +
-      'Incorporated REST APIs with Node.js backend and efficient state management for smooth cart manipulation and order processing ' +
-      'Deployed Docker containers to an EC2 instance by leveraging an automated backend workflow powered by GitHub Actions',
+      'Designed, developed, and deployed cross-platform mobile app for cost-effective, scheduled grocery subscriptions and deliveries. ' +
+      'Incorporated REST APIs with Node.js backend and efficient state management for smooth cart manipulation and order processing. ' +
+      'Deployed Docker containers to an EC2 instance by leveraging an automated backend workflow powered by GitHub Actions. ',
   },
   {
-    title: 'Space Potato',
-    subtitle: 'A kickstarter funded potato powered weather balloon.',
-    link: 'http://www.spacepotato.org',
-    image: '/images/projects/spacepotato.jpg',
-    date: '2015-06-28',
-    desc:
-      'Launched a potato battery powered weather balloon with two cameras ' +
-      'and gps transponder. Resulting photos were published in a coffee table book. ' +
-      'You can email me for a copy.',
+    title: 'Financial Analysis of Cryptocurrencies',
+    subtitle:
+      'I explore various mathematical models and how to construct them from scratch.',
+    link: 'https://github.com/amanbthakkar/crypto_finance',
+    image: '/images/projects/crypto.png',
+    date: '2021-12-28',
+    desc: (
+      <>
+        Created an AWS hosted Bitcoin Buy/Sell indicator that powers this page.{' '}
+        I showed, through various blog posts, how certain popular
+        cryptocurrencies (Litecoin) are pretty much useless to invest in. I also
+        predicted Bitcoin to fall below $30,000 in 2022 and wrote about it{' '}
+        <a href='https://www.linkedin.com/posts/amanbthakkar_bitcoin-cryptocurrency-cryptocrash-activity-6942058321973514241-AUwB?'>
+          here
+        </a>
+        .
+      </>
+    ),
   },
   {
-    title: 'Cat Detector',
-    subtitle: 'A convolutional neural network to classify cats! (and dogs)',
-    image: '/images/projects/catdetector.jpg',
-    date: '2015-05-15',
+    title: 'Smart Contract for Liquidation of On-Chain Loans',
+    subtitle: "Project for UC Berkeley's first ever Decentralized Finance MOOC",
+    link: 'https://github.com/amanbthakkar/defi-mooc-lab2',
+    image: '/images/projects/flashloan.png',
+    date: '2021-12-15',
     desc:
-      'Trained a convolutional neural network to classify between ~ 80 cats breeds. ' +
-      'Over 60,000 cats were classified before server bills made the project too expensive ' +
-      'to continue hosting.',
+      'Analyzed liquidity pools and protocols for lending and borrowing on Decentralized Exchanges. ' +
+      'We used flash loans to implement a two-step fixed spread liquidation of an overcollateralized on-chain loan.',
+  },
+  {
+    title: 'Instagram Saved Images Downloader',
+    subtitle: 'Telegram Bot',
+    image: '/images/projects/telegram_bots.png',
+    link: 'https://github.com/amanbthakkar/instagrambot-download_saved',
+    date: '2019-05-15',
+    desc: 'A Telegram Bot that logged into my account and fetched my saved images. Nothing too fancy.',
   },
 ];
 

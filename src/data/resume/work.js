@@ -34,6 +34,7 @@ const work = [
     name: 'Barclays Global Service Center',
     position: 'Software Developer',
     startDate: '2019-07-19',
+    endDate: '2022-08-02',
     summary: `Barclays Global Service Center (BGSC) is a global capability center of Barclays Bank PLC, providing best-in-class Technology, Operations, and Functions services 
     to Barclays businesses and customers globally. BGSC is headquartered in Pune, India, with operations in other countries as well. I worked with Payment Sanctions in the Financial Crimes
     Division, on multiple projects and internal services.`,
