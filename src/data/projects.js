@@ -16,7 +16,7 @@ const data = [
     title: 'Subscribite (Subscribe + Bite)',
     subtitle: 'Capstone project at UC Irvine',
     link: 'https://github.com/amanbthakkar/SubscriBite',
-    image: '/images/projects/subscribite.png',
+    image: '/images/projects/subscribite.jpeg',
     date: '2023-06-20',
     desc:
       'Designed, developed, and deployed cross-platform mobile app for cost-effective, scheduled grocery subscriptions and deliveries. ' +
