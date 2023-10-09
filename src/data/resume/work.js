@@ -27,7 +27,7 @@ const work = [
       'Re-designed front-end architecture of mobile app by independently leading migration from Angular to React Native',
       'Achieved 50% reduction in crown validation time by integrating 3D renders for the manufactured crowns within the app using Three.js',
       'Minimized backend server load through real-time communication of mobile app with milling devices for status updates using web sockets',
-      'Slashed hardware bug reporting time from a day or more to just a few seconds with a new feature allowing dentints to detail issues as well as submit photos ',
+      'Slashed hardware bug reporting time from more than a day to just a few seconds with a new feature allowing dentists to exolain issues as well as submit photos or attachments ',
     ],
   },
   {
