@@ -85,7 +85,7 @@ function Indicator() {
                 <p>
                   <h6 className='mb-3'>Too long, didn't read?</h6>
                   <Image
-                    src='/public/images/monkey1.jpg'
+                    src='/monkey1.jpg'
                     fluid
                     alt='Monkey'
                     style={{ maxWidth: '60%', height: 'auto' }}

@@ -14,6 +14,7 @@ const Index = lazy(() => import('./pages/Index'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 const Projects = lazy(() => import('./pages/Projects'));
 const Resume = lazy(() => import('./pages/Resume'));
+const Blogs = lazy(() => import('./pages/Blogs'));
 const Indicator = lazy(() => import('./pages/Indicator'));
 
 const App = () => {
@@ -24,10 +25,11 @@ const App = () => {
           <Routes>
             <Route path='/' element={<Index />} />
             <Route path='/about' element={<About />} />
+            <Route path='/btc-indicator' element={<Indicator />} />
             <Route path='/projects' element={<Projects />} />
+            <Route path='/blogs' element={<Blogs />} />
             <Route path='/contact' element={<Contact />} />
             <Route path='/resume' element={<Resume />} />
-            <Route path='/indicator' element={<Indicator />} />
 
             <Route path='*' element={<NotFound />} />
           </Routes>

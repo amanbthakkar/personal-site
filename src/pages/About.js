@@ -16,11 +16,6 @@ const About = () => {
     });
   });
 
-  const count = markdown
-    .split(/\s+/)
-    .map((s) => s.replace(/\W/g, ''))
-    .filter((s) => s.length).length;
-
   return (
     <>
       <Header />
@@ -31,10 +26,10 @@ const About = () => {
               <h2>
                 <Link to='/about'>About Me</Link>
               </h2>
-              <p>Coming soon!</p>
+              <p>Who I am and why I made this website</p>
             </div>
           </header>
-          {/* <Markdown>{markdown}</Markdown> */}
+          <Markdown>{markdown}</Markdown>
         </article>
       </Main>
     </>

@@ -18,11 +18,11 @@ const routes = [
   },
   {
     label: 'Blogs',
-    // path: '/blogs',
+    path: '/blogs',
   },
   {
-    label: 'Indicator',
-    path: '/indicator',
+    label: 'Bitcoin Indicator',
+    path: '/btc-indicator',
   },
   {
     label: 'Contact',
