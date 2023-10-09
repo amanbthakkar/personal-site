@@ -43,7 +43,7 @@ const Header = () => {
   return (
     <div className='bg-success'>
       <span className='text-center'>
-        Unique Website Visits (since Oct '23'): {visitorCount}{' '}
+        Unique Website Visits (since Oct '23): {visitorCount}{' '}
         <span
           style={{ paddingLeft: '3px' }}
           className='info-icon'
@@ -58,8 +58,8 @@ const Header = () => {
           This website uses cookies and URL tracking. Only user visits are
           tracked and no personal information is used or stored.
           <br />
-          Count is maintained using Redis as cache on an EC2 instance with HTTPS
-          enabled.
+          Visit count is maintained using Redis as cache on an EC2 instance with
+          HTTPS enabled.
         </div>
       )}
     </div>
