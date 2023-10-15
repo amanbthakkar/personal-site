@@ -33,10 +33,12 @@ const data = [
     desc: (
       <>
         Created an AWS hosted Bitcoin Buy/Sell indicator that powers{' '}
-        <a href='https://www.amanthakkar.com/btc-indicator'>this page</a>. I
-        showed, through various blog posts, how certain popular cryptocurrencies
-        (Litecoin) are pretty much useless to invest in. I also predicted
-        Bitcoin to fall below $30,000 in 2022 and wrote about it{' '}
+        <a href='https://www.amanthakkar.com/power-law-oscillator-indicator'>
+          this page
+        </a>
+        . I showed, through various blog posts, how certain popular
+        cryptocurrencies (Litecoin) are pretty much useless to invest in. I also
+        predicted Bitcoin to fall below $30,000 in 2022 and wrote about it{' '}
         <a href='https://www.linkedin.com/posts/amanbthakkar_bitcoin-cryptocurrency-cryptocrash-activity-6942058321973514241-AUwB?'>
           here
         </a>
@@ -55,12 +57,22 @@ const data = [
       'We used flash loans to implement a two-step fixed spread liquidation of an overcollateralized on-chain loan.',
   },
   {
+    title: 'Counterfeit Detection in Supply Chains using Blockchain',
+    subtitle: 'Undergrad Capstone Project',
+    link: 'https://github.com/amanbthakkar/defi-mooc-lab2',
+    image: '/images/projects/supply_chain.png',
+    date: '2019-05-15',
+    desc:
+      'Studied Andreas Antonopoulos\' Mastering Bitcoin to understand how Bitcoin enables "Proof Of Possession" of funds  . ' +
+      'Our team of 4 then created our own version of a Bitcoin-like blockchain, entirely from scratch in Golang, to mimic supply chain transactions to prevent counterfeits',
+  },
+  {
     title: 'Instagram Saved Images Downloader',
     subtitle: 'Telegram Bot',
     image: '/images/projects/telegram_bots.png',
     link: 'https://github.com/amanbthakkar/instagrambot-download_saved',
     date: '2019-05-15',
-    desc: "A Telegram Bot built with Python that logged into my account and fetched my saved images. Nothing too fancy. I had hosted it somewhere earlier but it isn't anymore.",
+    desc: 'A Telegram Bot built with Python that logged into my account and fetched my saved images. Nothing too fancy. I had hosted it somewhere earlier but it hosted anywhere anymore.',
   },
 ];
 

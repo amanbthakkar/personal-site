@@ -4,10 +4,10 @@ const routes = [
     label: 'Aman Thakkar',
     path: '/',
   },
-  {
-    label: 'About',
-    path: '/about',
-  },
+  // {
+  //   label: 'About',
+  //   path: '/about',
+  // },
   {
     label: 'Resume',
     path: '/resume',
@@ -22,7 +22,7 @@ const routes = [
   },
   {
     label: 'Bitcoin Indicator',
-    path: '/btc-indicator',
+    path: '/power-law-oscillator-indicator',
   },
   {
     label: 'Contact',

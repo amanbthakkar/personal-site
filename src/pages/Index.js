@@ -1,35 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Markdown from 'markdown-to-jsx';
 
 import Main from '../layouts/Main';
 import Header from '../components/Header/Header';
-const Index = () => (
-  <>
-    <Header />
-    <Main description={"Aman Thakkar's personal website."}>
-      <article className='post' id='index'>
-        <header>
-          <div className='title'>
-            <h2>
-              <Link to='/'>About this site</Link>
-            </h2>
-            <p>
-              A beautiful, responsive, statically-generated, react application
-              written with modern Javascript.
-            </p>
-          </div>
-        </header>
-        <p>
-          {' '}
-          Welcome to my website. Please feel free to read explore! If you're a
-          recruiter , here is some stuff <Link to='/about'>about me</Link>, or
-          you can check out my <Link to='/resume'>resume</Link>,{' '}
-          <Link to='/projects'>projects</Link>, or{' '}
-          <Link to='/contact'>contact</Link> me.
-        </p>
-      </article>
-    </Main>
-  </>
-);
+
+const Index = () => {
+  const [markdown, setMarkdown] = useState('');
+
+  useEffect(() => {
+    import('../data/about.md').then((res) => {
+      fetch(res.default)
+        .then((r) => r.text())
+        .then(setMarkdown);
+    });
+  });
+
+  return (
+    <>
+      <Header />
+      <Main title='About' description='Learn about Aman Thakkar'>
+        <article className='post markdown' id='about'>
+          <header>
+            <div className='title'>
+              <h2>
+                <Link to='/'>About Me</Link>
+              </h2>
+              <p>Who I am and why I made this website</p>
+            </div>
+          </header>
+
+          <Markdown>{markdown}</Markdown>
+        </article>
+      </Main>
+    </>
+  );
+};
 
 export default Index;

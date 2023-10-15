@@ -41,7 +41,7 @@ const Header = () => {
     getVisitorCount();
   }, []);
   return (
-    <div className='bg-success'>
+    <div className='banner-style'>
       <span className='text-center'>
         Unique Website Visits (since Oct '23): {visitorCount}{' '}
         <span
@@ -58,8 +58,7 @@ const Header = () => {
           This website uses cookies and URL tracking. Only user visits are
           tracked and no personal information is used or stored.
           <br />
-          Visit count is maintained using Redis as cache on an EC2 instance with
-          HTTPS enabled.
+          Visit count is maintained using Redis.
         </div>
       )}
     </div>

@@ -10,16 +10,16 @@ import data from '../data/projects';
 const Projects = () => (
   <>
     <Header />
-    <Main title='Projects' description="Learn about Aman's blog posts.">
+    <Main title='Blogs' description="Learn about Aman's blog posts.">
       <article className='post' id='projects'>
         <header>
           <div className='title'>
             <h2>
-              <Link to='/projects'>Projects</Link>
+              <Link to='/blogs'>Projects</Link>
             </h2>
             <p>
               I wrote some blog posts. Coming soon... (visit my{' '}
-              <a href='https://medium.com/@amanbthakkar'>Medium</a> till then)
+              <a href='https://medium.com/@amanbthakkar'>Medium</a> until then)
             </p>
           </div>
         </header>

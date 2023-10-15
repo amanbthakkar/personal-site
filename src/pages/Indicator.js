@@ -23,7 +23,9 @@ function Indicator() {
             <header>
               <div className='title'>
                 <h2>
-                  <Link to='/projects'>My Bitcoin Buy/Sell Indicator</Link>
+                  <Link to='/power-law-oscillator-indicator'>
+                    My Bitcoin Buy/Sell Indicator
+                  </Link>
                 </h2>
                 <p>Is It A Good Time To Buy Bitcoin?</p>
               </div>

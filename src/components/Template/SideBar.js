@@ -27,7 +27,9 @@ const SideBar = () => (
         I was a software developer at Barclays where I worked after completing
         my Bachelor's in Computer Engineering in Mumbai, India. I am really
         passionate about technology, finance, and their intersection! Please do
-        check out my resume, projects, and blog posts :)
+        check out my <Link to='/resume'>resume</Link>,{' '}
+        <Link to='/projects'>projects</Link>, and if you're interested, my{' '}
+        <Link to='/power-law-oscillator-indicator'>Bitcoin indicator</Link>!
       </p>
       <ul className='actions'>
         <li>
@@ -36,7 +38,7 @@ const SideBar = () => (
               Learn More
             </Link>
           ) : (
-            <Link to='/about' className='button'>
+            <Link to='/' className='button'>
               About Me
             </Link>
           )}
