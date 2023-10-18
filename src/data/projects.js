@@ -7,9 +7,11 @@ const data = [
     image: '/images/projects/amanthakkar.png',
     date: '2023-10-20',
     desc:
-      "A full-stack website showing what you're reading here.  Front-end is hosted using Github Pages. " +
+      "A full-stack website showing what you're reading here, including my Bitcoin indicator.  Front-end is hosted using Github Pages. " +
       'The unique visits count is done through a self-hosted backend on AWS with containerized Node and Redis. ' +
-      "I've also used Nginx and Certbot for enabling HTTPS communication. " +
+      'Python script for the indicator runs daily on the same server, with the image uploaded to a public S3 bucket.' +
+      "I earlier used AWS Lambda with CloudWatch but it wasn't feasible in the free tier so now it's just a cron job. " +
+      "I've also used Nginx as a reverse proxy and Certbot for enabling HTTPS communication. " +
       'Domain and subdomain purchased through Squarespace. ',
   },
   {
@@ -19,9 +21,9 @@ const data = [
     image: '/images/projects/subscribite.jpeg',
     date: '2023-06-20',
     desc:
-      'Designed, developed, and deployed cross-platform mobile app for cost-effective, scheduled grocery subscriptions and deliveries. ' +
-      'Incorporated REST APIs with Node.js backend and efficient state management for smooth cart manipulation and order processing. ' +
-      'Deployed Docker containers to an EC2 instance by leveraging an automated backend workflow powered by GitHub Actions. ',
+      'Designed, developed, and deployed a cross-platform mobile app using React Native for cost-effective, scheduled grocery subscriptions and deliveries. ' +
+      'We incorporated REST APIs with a Node.js backend and used efficient state management on the frontend for extremely smooth cart manipulation and order processing. ' +
+      'Backend was deployed to an EC2 instance using Docker, by leveraging an automated workflow powered by GitHub Actions. Click on the image to view our Github repo and associated vidoes',
   },
   {
     title: 'Financial Analysis of Cryptocurrencies',
@@ -63,16 +65,18 @@ const data = [
     image: '/images/projects/supply_chain.png',
     date: '2019-05-15',
     desc:
-      'Studied Andreas Antonopoulos\' Mastering Bitcoin to understand how Bitcoin enables "Proof Of Possession" of funds  . ' +
+      'Studied Andreas Antonopoulos\' "Mastering Bitcoin" to understand how Bitcoin enables "Proof Of Possession" of funds  . ' +
       'Our team of 4 then created our own version of a Bitcoin-like blockchain, entirely from scratch in Golang, to mimic supply chain transactions to prevent counterfeits',
   },
   {
     title: 'Instagram Saved Images Downloader',
     subtitle: 'Telegram Bot',
     image: '/images/projects/telegram_bots.png',
-    link: 'https://github.com/amanbthakkar/instagrambot-download_saved',
+    link: 'https://www.reddit.com/r/Python/comments/gs54y9/made_a_telegram_bot_that_logs_into_my_instagram/',
     date: '2019-05-15',
-    desc: 'A Telegram Bot built with Python that logged into my account and fetched my saved images. Nothing too fancy. I had hosted it somewhere earlier but it hosted anywhere anymore.',
+    desc:
+      "A Telegram Bot built with Python that logged into my account and fetched my saved images. Nothing too fancy. I had hosted it somewhere earlier but it isn't hosted anywhere anymore." +
+      'Click on the image to see a small video of how it works.',
   },
 ];
 
