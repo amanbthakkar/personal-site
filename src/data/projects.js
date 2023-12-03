@@ -1,6 +1,18 @@
 // TODO Add a couple lines about each project
 const data = [
   {
+    title: 'URL Shortener',
+    subtitle: 'Golang based URL shortener!',
+    link: 'https://github.com/amanbthakkar/url-shortener-golang-react',
+    image: '/images/projects/url_shortener.png',
+    date: '2023-11-20',
+    desc:
+      'A URL shortening service that converts a long URL to a short URL, and allows navigation to the actual URL using the shortened version. ' +
+      'It is built using React for a simple front-end and Golang with Fiber for the backend.' +
+      'I used goroutines and channels to exploit concurrency while creating UUIDs for uniquely mapped, non-conflicting shortened URLs. ' +
+      'Mapping and IP based Rate limiting is done through Redis, with all services dockerized and ready to deploy on any cloud service. ',
+  },
+  {
     title: 'amanthakkar.com',
     subtitle: 'This personal website + a live Bitcoin indicator',
     link: 'amanthakkar.com',
