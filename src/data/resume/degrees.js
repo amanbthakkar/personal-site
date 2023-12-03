@@ -2,7 +2,7 @@ const degrees = [
   {
     school: 'University of California, Irvine',
     degree: 'Master of Computer Science',
-    year: 'Sep 2022 - Present (Graduating Dec 2023)',
+    year: 'Sep 2022 - Dec 2023',
   },
   {
     school: 'University of Mumbai, K.J.S.C.E',

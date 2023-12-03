@@ -1,6 +1,6 @@
 # Intro
 
-Hello!! I am a Computer Science grad student at the University of California, Irvine. As of right now, I am actively looking for full-time roles beginning January 2024. If you're a recruiter (!!!), please check out my [resume](resume) and [projects](projects) and reach out to me @ [thakkaa1@uci.edu](mailto:thakkaa1@uci.edu) or [amanbthakkar@gmail.com](mailto:amanbthakkar@gmail.com) or DM me on [LinkedIn](https://www.linkedin.com/in/amanbthakkar/)!.
+Hello!! I am a Software Engineer with 3 years of work experience and a master's degree from the Univerisy of California, Irvine! I am actively looking for full-time roles beginning January 2024. If you're a recruiter (!!!), please check out my [resume](resume) and [projects](projects) and reach out to me @ [thakkaa1@uci.edu](mailto:thakkaa1@uci.edu) or [amanbthakkar@gmail.com](mailto:amanbthakkar@gmail.com) or DM me on [LinkedIn](https://www.linkedin.com/in/amanbthakkar/)!.
 
 # Hobbies and Interests
 

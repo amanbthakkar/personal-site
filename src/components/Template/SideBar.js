@@ -22,13 +22,12 @@ const SideBar = () => (
     <section className='blurb'>
       <h2>About</h2>
       <p>
-        Hi, I am Aman! I'm a Computer Science grad student at the University of
-        California, Irvine. I'll be graduating in December of 2023! Previously,
-        I was a software developer at Barclays where I worked after completing
-        my Bachelor's in Computer Engineering in Mumbai, India. I am really
-        passionate about technology, finance, and their intersection! Please do
-        check out my <Link to='/resume'>resume</Link>,{' '}
-        <Link to='/projects'>projects</Link>, and if you're interested, my{' '}
+        Hi, I am Aman! I have worked at Barclays as a software developer for 3
+        years and also have a master's in Computer Science from UC Irvine. I am
+        really passionate about technology and also have a special interest in
+        finance and its intersection with technology! Please do check out my{' '}
+        <Link to='/resume'>resume</Link>, <Link to='/projects'>projects</Link>,
+        and if you're interested, my{' '}
         <Link to='/power-law-oscillator-indicator'>Bitcoin indicator</Link>!
       </p>
       <ul className='actions'>
