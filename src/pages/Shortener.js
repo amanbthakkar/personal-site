@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Image } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, Route } from 'react-router-dom';
 import axios from 'axios';
 import Main from '../layouts/Main';
 import Header from '../components/Header/Header';
@@ -12,6 +12,7 @@ import '../Shortener.css';
 function Shortener() {
   const [inputURL, setInputURL] = useState('');
   const [outputURL, setOutputURL] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Extract the shortened part from the URL
@@ -51,19 +52,17 @@ function Shortener() {
       console.log(response);
       if (response.status === 200) {
         const originalURL = response.data.originalURL;
-        if (window) {
+        console.log('Trying to go to', originalURL);
+
+        if (typeof window !== 'undefined') {
           window.location.href = originalURL;
         }
       } else {
         console.log(response.status);
-        if (window) {
-          window.location.href = 'https://amanthakkar.com/url-shortener';
-        }
+        navigate('/url-shortener');
       }
     } catch (error) {
-      if (window) {
-        window.location.href = 'https://amanthakkar.com/url-shortener';
-      }
+      navigate('/url-shortener');
 
       console.error('Error handling redirect:', error.message);
     }
