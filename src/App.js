@@ -16,7 +16,7 @@ const Projects = lazy(() => import('./pages/Projects'));
 const Resume = lazy(() => import('./pages/Resume'));
 const Blogs = lazy(() => import('./pages/Blogs'));
 const Indicator = lazy(() => import('./pages/Indicator'));
-
+const Shortener = lazy(() => import('./pages/Shortener'));
 const App = () => {
   return (
     <>
@@ -33,8 +33,8 @@ const App = () => {
             <Route path='/blogs' element={<Blogs />} />
             <Route path='/contact' element={<Contact />} />
             <Route path='/resume' element={<Resume />} />
-
-            <Route path='*' element={<NotFound />} />
+            <Route path='/url-shortener' element={<Shortener />} />
+            <Route path='*' element={<Shortener />} />
           </Routes>
         </Suspense>
       </BrowserRouter>
