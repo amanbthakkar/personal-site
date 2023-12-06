@@ -51,13 +51,19 @@ function Shortener() {
       console.log(response);
       if (response.status === 200) {
         const originalURL = response.data.originalURL;
-        window.location.href = originalURL;
+        if (window) {
+          window.location.href = originalURL;
+        }
       } else {
         console.log(response.status);
-        window.location.href = 'https://amanthakkar.com/url-shortener';
+        if (window) {
+          window.location.href = 'https://amanthakkar.com/url-shortener';
+        }
       }
     } catch (error) {
-      window.location.href = 'https://amanthakkar.com/url-shortener';
+      if (window) {
+        window.location.href = 'https://amanthakkar.com/url-shortener';
+      }
 
       console.error('Error handling redirect:', error.message);
     }
