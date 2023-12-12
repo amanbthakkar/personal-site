@@ -76,7 +76,7 @@ function Shortener() {
 
   const handleCopy = () => {
     // Copy the shortened URL to the clipboard
-    navigator.clipboard.writeText(`https://localhost:3000/${outputURL}`);
+    navigator.clipboard.writeText(`https://amanthakkar.com/${outputURL}`);
     alert('Shortened URL copied to clipboard!');
   };
 
@@ -142,7 +142,7 @@ function Shortener() {
                     <p>
                       <em>{formatInputURL()}</em> is shortened to{' '}
                       <span>
-                        <a href={`http://localhost:3000/${outputURL}`}>
+                        <a href={`https://amanthakkar.com/${outputURL}`}>
                           amanthakkar.com/{outputURL}
                         </a>
                       </span>{' '}
