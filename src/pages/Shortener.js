@@ -49,13 +49,19 @@ function Shortener() {
       const newURL =
         'https://cloud.amanthakkar.com/shorten/?shortened=' + shortenedPart;
       const response = await axios.get(newURL);
-      console.log(response);
+      console.log('Shortened URL: ', response);
       if (response.status === 200) {
         const originalURL = response.data.originalURL;
         console.log('Trying to go to', originalURL);
 
+        // Ensure that the URL has a protocol (https:// or http://)
+        const redirectToURL = /^https?:\/\//i.test(originalURL)
+          ? originalURL
+          : 'https://' + originalURL;
+        console.log('New URL:', redirectToURL);
+
         if (typeof window !== 'undefined') {
-          window.location.href = originalURL;
+          window.location.href = redirectToURL;
         }
       } else {
         console.log(response.status);
@@ -70,7 +76,7 @@ function Shortener() {
 
   const handleCopy = () => {
     // Copy the shortened URL to the clipboard
-    navigator.clipboard.writeText(`https://amanthakkar.com/${outputURL}`);
+    navigator.clipboard.writeText(`https://localhost:3000/${outputURL}`);
     alert('Shortened URL copied to clipboard!');
   };
 
@@ -136,7 +142,7 @@ function Shortener() {
                     <p>
                       <em>{formatInputURL()}</em> is shortened to{' '}
                       <span>
-                        <a href={`https://amanthakkar.com/${outputURL}`}>
+                        <a href={`http://localhost:3000/${outputURL}`}>
                           amanthakkar.com/{outputURL}
                         </a>
                       </span>{' '}
