@@ -13,16 +13,20 @@
  */
 const work = [
   {
+    name: 'Hewlett Packard Enterprise',
+    position: 'Cloud Applications Developer II',
+    startDate: '2024-02-12',
+    summary: `I am working on building the cloud platform for the next generation of Aruba's enterprise switches.
+    `,
+    highlights: [,],
+  }, 
+  {
     name: 'Glidewell Dental',
     position: 'Software Engineer Intern',
     startDate: '2023-06-19',
     endDate: '2023-09-01',
-    summary: `Glidewell Dental is a dental laboratory based in Irvine, California. They provide a 
-    wide range of dental lab services, including crowns and bridges, implant prostherics, dentures, and much more.
-    Though a dental company, Glidewell is known for its use of technology to improve the quality, convenience 
-    and cost-effectiveness of its services. I worked on the mobile app for the Chairside Milling System, where I rapidly 
-    added new features to the existing Angular/Ionic app while also leading the migration from Angular to React Native with
-    a re-design of the app's architecture.`,
+    summary: `Glidewell Dental, based in Irvine, California, is a leading dental laboratory known for its innovative use of technology to enhance the quality and efficiency of its services.
+    I led the migration from Angular to React Native and redesigned the Chairside Milling System mobile app, adding new features to improve user experience. `,
     highlights: [
       'Re-designed front-end architecture of mobile app by independently leading migration from Angular to React Native',
       'Achieved 50% reduction in crown validation time by integrating 3D renders for the manufactured crowns within the app using Three.js',

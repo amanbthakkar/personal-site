@@ -22,8 +22,7 @@ const SideBar = () => (
     <section className='blurb'>
       <h2>About</h2>
       <p>
-        Hi, I am Aman! I have worked at Barclays as a software developer for 3
-        years and also have a master's in Computer Science from UC Irvine. I am
+        Hi, I am Aman! I am currently working at HPE as a Software Engineer. Previously at Barclays prior to my Master's from UC Irvine. I am
         really passionate about technology and also have a special interest in
         finance and its intersection with technology! Please do check out my{' '}
         <Link to='/resume'>resume</Link>, <Link to='/projects'>projects</Link>,
