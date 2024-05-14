@@ -1,57 +1,69 @@
 .gauri-container {
-    text-align: center;
-    padding: 20px;
-  }
-  
+  text-align: center;
+  padding: 20px;
+}
+
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25%, 35%)); /* Adjust the button size and layout */
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center; /* Center the buttons */
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.blue-button {
+  background-color: #4169E1;
+}
+
+.green-button {
+  background-color: yellow;
+}
+
+.red-button {
+  background-color: red;
+}
+
+.yellow-button {
+  background-color: #E6E6FA;
+  color: black;
+}
+
+input[type="text"] {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%; /* This will make the input field take up the full available width */
+  box-sizing: border-box; /* This will include the padding and border in the width calculation */
+}
+
+.gauri-container form {
+  display: flex;
+  flex-direction: column; /* This will stack the input field and button vertically */
+  align-items: center;
+}
+
+.gauri-container form button {
+  margin-top: 10px; /* Add some spacing between the input field and button */
+}
+
+/* Media queries for phone responsiveness */
+@media only screen and (max-width: 600px) {
   .button-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin-bottom: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(45%, 95%)); /* Adjust the button size and layout for smaller screens */
   }
-  
-  button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 4px;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .blue-button {
-    background-color: blue;
-  }
-  
-  .green-button {
-    background-color: green;
-  }
-  
-  .red-button {
-    background-color: red;
-  }
-  
-  .yellow-button {
-    background-color: yellow;
-    color: black;
-  }
-  
-  input[type="text"] {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 100%; /* This will make the input field take up the full available width */
-    box-sizing: border-box; /* This will include the padding and border in the width calculation */
-  }
-  
-  .gauri-container form {
-    display: flex;
-    flex-direction: column; /* This will stack the input field and button vertically */
-    align-items: center;
-  }
-  
-  .gauri-container form button {
-    margin-top: 10px; /* Add some spacing between the input field and button */
-    min-width: 25%; /* This will make the button at least 25% of the available width */
-  }
+}

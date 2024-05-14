@@ -75,7 +75,7 @@ const Gauri = () => {
           I WANT TO ;)
         </button>
       </div>
-      <p>Send a custom message (requires mode of payment to be decided by me later (usually kissss):</p>
+      <p>Send a custom message (requires mode of payment to be decided by me later (usually kissiess))</p>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
