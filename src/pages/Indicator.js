@@ -58,7 +58,7 @@ function Indicator() {
                       minWidth: '600px',
                       paddingBlock: '10px',
                     }}
-                    src='https://pythonbtcscript.s3.us-west-1.amazonaws.com/indicator.png?timestamp=${new Date().getTime()}'
+                    src='https://bitcoin-indicator-script.s3.us-east-2.amazonaws.com/indicator.png?timestamp=${new Date().getTime()}'
                     alt='Bitcoin Indicator'
                     fluid
                   />
