@@ -72,7 +72,7 @@ const Gauri = () => {
           className="yellow-button"
           onClick={() => handleButtonClick('Hehehehehehe ;)')}
         >
-          I WANT TO ;)
+          HUNGREEEEEYYY
         </button>
       </div>
       <p>Send a custom message (requires mode of payment to be decided by me later (usually kissiess))</p>
