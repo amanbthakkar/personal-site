@@ -10,7 +10,7 @@ body.shortener-page-active {
   justify-content: center;
 }
 
-.container {
+.shortener-container .container {
   text-align: center;
 }
   
