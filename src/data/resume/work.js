@@ -70,16 +70,6 @@ const work = [
       'Achieved 5x increase in code coverage through the utilization of Selenium and Cucumber for test case automation',
     ],
   },
-  {
-    name: 'PredCred',
-    position: 'Intern',
-    startDate: '2016-10-01',
-    endDate: '2017-10-01',
-    summary: `PredCred was a startup that aimed to game-ify sports betting in India. It enabled users to stake virtual currencies on outcomes of sports games 
-    and win more virtual currencies in return. These returns could be used to redeem coupons or prizes with our merchant partners. I wore multiple hats as an Intern here inluding development, 
-    user base analysis, customer support, marketing, pitching to investors, etc.`,
-    highlights: [,],
-  },
 ];
 
 export default work;
