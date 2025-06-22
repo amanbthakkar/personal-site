@@ -44,18 +44,41 @@ jobs:
           - os: macos-latest
             node-version: 18.x
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - name: Build and Statically Render
-      run: npm run predeploy
-      env:
-        NODE_ENV: development
-    - name: Test
-      run: npm test
-      env:
-        NODE_ENV: development
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - run: npm ci
+      - name: Build and Statically Render
+        shell: bash
+        run: |
+          function retry {
+            local n=1
+            local max=5
+            local delay=1
+            while true; do
+              export PUPPETEER_EXECUTABLE_PATH=$(which google-chrome)
+              "$@" && break || {
+                if [[ $n -lt $max ]]; then
+                  ((n++))
+                  echo "Command failed. Attempt $n/$max:"
+                  sleep $delay;
+                else
+                  echo "The command has failed after $n attempts."
+                  return 1
+                fi
+              }
+            done
+          }
+          retry npm run predeploy
+        env:
+          NODE_ENV: development
+          PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true
+          PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome
+          PUPPETEER_ARGS: --no-sandbox --disable-setuid-sandbox
+      - name: Test
+        run: npm test
+        env:
+          NODE_ENV: development
