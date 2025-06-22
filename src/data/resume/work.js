@@ -16,7 +16,8 @@ const work = [
     name: 'Meta Platforms, Inc.',
     position: 'Software Performance and Capacity Engineer',
     startDate: '2025-06-23',
-    summary: 'Just joined Meta!',
+    summary: `Just joined Meta as a Software Performance and Capacity Engineer. Please reach out to me if you'd like to know more!
+    `,
     highlights: [,],
   },
   {
@@ -24,7 +25,7 @@ const work = [
     position: 'Cloud Applications Developer II',
     startDate: '2024-02-12',
     endDate: '2025-06-16',
-    summary: `I worked on building the cloud platform for the next generation of Aruba's enterprise switches.
+    summary: `I worked on building the cloud platform for the next generation of Aruba's (a Hewlett Packard Enterprise company) enterprise switches.
     `,
     highlights: [
       'Detected & resolved race conditions in concurrent goroutines by redesigning high-volume message processing pipeline',
@@ -42,13 +43,13 @@ const work = [
     position: 'Software Engineer Intern',
     startDate: '2023-06-19',
     endDate: '2023-09-01',
-    summary: `Glidewell Dental, based in Irvine, California, is a leading dental laboratory known for its innovative use of technology to enhance the quality and efficiency of its services.
-    I led the migration from Angular to React Native and redesigned the Chairside Milling System mobile app, adding new features to improve user experience. `,
+    summary: `Glidewell Dental, based in Irvine, California, is a leading dental laboratory known for its innovative use of technology to enhance the quality and efficiency of its services. 
+`,
     highlights: [
       'Re-designed front-end architecture of mobile app by independently leading migration from Angular to React Native',
-      'Achieved 50% reduction in crown validation time by integrating 3D renders for the manufactured crowns within the app using Three.js',
-      'Minimized backend server load through real-time communication of mobile app with milling devices for status updates using web sockets',
-      'Slashed hardware bug reporting time from more than a day to just a few seconds with a new feature allowing dentists to explain issues as well as submit photos or attachments ',
+      'Achieved 50% reduction in crown validation time by integrating 3D renders within the app using Three.js',
+      'Minimized backend server load through real-time communication with milling devices with advanced web socket implementation',
+      'Slashed hardware bug reporting time by 90% with new feature allowing dentists to snap and submit photos with seconds',
     ],
   },
   {
@@ -56,17 +57,13 @@ const work = [
     position: 'Software Developer',
     startDate: '2019-07-19',
     endDate: '2022-08-02',
-    summary: `Barclays Global Service Center (BGSC) is a global capability center of Barclays Bank PLC, providing best-in-class Technology, Operations, and Functions services 
-    to Barclays businesses and customers globally. BGSC is headquartered in Pune, India, with operations in other countries as well. I worked with Payment Sanctions in the Financial Crimes
+    summary: `Barclays Global Service Center (BGSC) is a global capability center of Barclays Bank PLCI worked with Payment Sanctions in the Financial Crimes
     Division, on multiple projects and internal services.`,
     highlights: [
       'Saved USD 30,000 in capital costs by developing an in-house website using React for Operations to flag fraudulent transactions',
-      'Led cross-functional effort to develop, test, and deploy new payment route configurations using Fircosoft for real-time,cross-border euro transfers with over 6 million annual transactions and sub-second processing time',
-      'Reduced manual effort by approximately 75% by creating Python scripts to detect live data breaches in test environments',
-      'Boosted analysts’ efficiency by 30% with Python parser to process over 50 types of raw payment files into customizable reports',
-      'Received “Recognition of Excellence” for contributions to a challenging ESQL project that modified internal sanctions broker',
-      'Designed SOPs and provisioned new environment for ad-hoc rescreening tasks right from data extraction to validation of results',
-      'Enhanced software consistency via automated Chef deployments, streamlining infrastructure operations across 7 environments',
+      'Led cross functional effort to develop, test and deploy new payment route configurations for real-time, cross-border euro transfers',
+      'Reduced manual effort by ~75% by creating Python scripts to detect live data breaches in test environments',
+      'Boosted analysis efficiency by ~30% with Python parser to process raw payment files of over 50 types into customizable reports',
       'Achieved 5x increase in code coverage through the utilization of Selenium and Cucumber for test case automation',
     ],
   },
