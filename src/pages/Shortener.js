@@ -15,6 +15,14 @@ function Shortener() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    document.body.classList.add('shortener-page-active');
+
+    return () => {
+      document.body.classList.remove('shortener-page-active');
+    };
+  }, []);
+
+  useEffect(() => {
     // Extract the shortened part from the URL
     const fullPath = window.location.pathname;
     console.log(fullPath);
@@ -109,8 +117,8 @@ function Shortener() {
         title='URL Shortener'
         description='Explore a URL shortener I created using Golang'
       >
-        <div>
-          <article className='post' id='projects'>
+        <article className='post' id='projects'>
+          <div className='shortener-container'>
             <header>
               <div className='title'>
                 <h2>
@@ -167,8 +175,8 @@ function Shortener() {
                 )}
               </div>
             </Container>
-          </article>
-        </div>
+          </div>
+        </article>
       </Main>
     </>
   );
