@@ -13,13 +13,30 @@
  */
 const work = [
   {
+    name: 'Meta Platforms, Inc.',
+    position: 'Software Performance and Capacity Engineer',
+    startDate: '2025-06-23',
+    summary: 'Just joined Meta!',
+    highlights: [,],
+  },
+  {
     name: 'Hewlett Packard Enterprise',
     position: 'Cloud Applications Developer II',
     startDate: '2024-02-12',
-    summary: `I am working on building the cloud platform for the next generation of Aruba's enterprise switches.
+    endDate: '2025-06-16',
+    summary: `I worked on building the cloud platform for the next generation of Aruba's enterprise switches.
     `,
-    highlights: [,],
-  }, 
+    highlights: [
+      'Detected & resolved race conditions in concurrent goroutines by redesigning high-volume message processing pipeline',
+      'Eliminated OOM errors in Kubernetes pods with efficient memory usage along with distributed message tracing and logging',
+      'Achieved ~30% lower inter-service communication latency by transitioning multiple legacy APIs from REST to gRPC',
+      'Optimized Golang cloud service for Aruba switches with Redis caching, lowering database queries by 80%',
+      'Boosted feature branch testing speed by ~10% across organization by improving Python-based test automation framework',
+      'Led effort to deliver multiple workflows and services for Aruba\'s on-premise solution with intensive testing within tight deadlines',
+      'Enhanced real-time service performance insights via Prometheus metric collection and custom Grafana dashboards',
+      'Developed Proof of Concept application using RAG techniques to provide automated Level 1 triages for bugs based on runbooks from multiple services',
+    ],
+  },
   {
     name: 'Glidewell Dental',
     position: 'Software Engineer Intern',
