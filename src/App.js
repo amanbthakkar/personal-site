@@ -1,18 +1,21 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Main from './layouts/Main'; // fallback for lazy pages
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
+import ToastProvider from './components/Toast/ToastProvider';
+import ScrollRestoration from './components/ScrollRestoration/ScrollRestoration';
 import './static/css/main.scss'; // All of our styles
 
 // Vite uses import.meta.env instead of process.env
 const PUBLIC_URL = import.meta.env.BASE_URL || '/';
 
-// Every route - we lazy load so that each page can be chunked
-// NOTE that some of these chunks are very small. We should optimize
-// which pages are lazy loaded in the future.
-// const About = lazy(() => import('./pages/About'));
-const Contact = lazy(() => import('./pages/Contact'));
-const Index = lazy(() => import('./pages/Index'));
-const NotFound = lazy(() => import('./pages/NotFound'));
+// Optimized code splitting: Only lazy-load heavy pages
+// Light pages (Contact, Index, NotFound) are loaded synchronously for faster initial load
+import Contact from './pages/Contact';
+import Index from './pages/Index';
+import NotFound from './pages/NotFound';
+
+// Heavy pages are lazy-loaded
 const Projects = lazy(() => import('./pages/Projects'));
 const Resume = lazy(() => import('./pages/Resume'));
 const Blogs = lazy(() => import('./pages/Blogs'));
@@ -20,8 +23,10 @@ const Indicator = lazy(() => import('./pages/Indicator'));
 const Shortener = lazy(() => import('./pages/Shortener'));
 const App = () => {
   return (
-    <>
+    <ErrorBoundary>
+      <ToastProvider />
       <BrowserRouter basename={PUBLIC_URL}>
+        <ScrollRestoration />
         <Suspense fallback={<Main />}>
           <Routes>
             <Route path='/' element={<Index />} />
@@ -39,7 +44,7 @@ const App = () => {
           </Routes>
         </Suspense>
       </BrowserRouter>
-    </>
+    </ErrorBoundary>
   );
 };
 

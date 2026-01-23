@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Image } from 'react-bootstrap';
-import { Link, useNavigate, Route } from 'react-router-dom';
-import axios from 'axios';
+import { Container } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 import Main from '../layouts/Main';
 import Header from '../components/Header/Header';
-import Cell from '../components/Projects/Cell';
-import data from '../data/projects';
-
+import { shortenUrl, getShortenedUrl } from '../services/api';
+import { isValidUrl, normalizeUrl } from '../utils/urlValidation';
 import '../Shortener.css';
 
 function Shortener() {
   const [inputURL, setInputURL] = useState('');
   const [outputURL, setOutputURL] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,81 +26,77 @@ function Shortener() {
   useEffect(() => {
     // Extract the shortened part from the URL
     const fullPath = window.location.pathname;
-    console.log(fullPath);
-    const keyword = '/';
+    
+    // Remove leading slash and split by '/'
+    const pathParts = fullPath.replace(/^\/+/, '').split('/');
+    const firstPart = pathParts[0];
 
-    // Find the index of "personal-site/"
-    const startIndex = fullPath.indexOf(keyword);
-
-    // Take whatever comes after "personal-site/"
-    const substringAfterKeyword =
-      startIndex !== -1 ? fullPath.substring(startIndex + keyword.length) : '';
-
-    // Find the first "/" in the new variable
-    const endIndex = substringAfterKeyword.indexOf('/');
-
-    // Give substring from the start of the new variable till the "/" OR till the end if it doesn't exist
-    const result =
-      endIndex !== -1
-        ? substringAfterKeyword.substring(0, endIndex)
-        : substringAfterKeyword;
-
-    // make this to be after the last /url-shortener part
-    console.log(result);
-    // If there is a shortened part, make the GET request
-    if (result && result !== 'url-shortener') {
-      handleRedirect(result);
+    // If there is a shortened part (and it's not the url-shortener route itself), redirect
+    if (firstPart && firstPart !== 'url-shortener' && firstPart.trim() !== '') {
+      handleRedirect(firstPart);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleRedirect = async (shortenedPart) => {
     try {
-      const newURL =
-        'https://cloud.amanthakkar.com/shorten/?shortened=' + shortenedPart;
-      const response = await axios.get(newURL);
-      console.log('Shortened URL: ', response);
-      if (response.status === 200) {
-        const originalURL = response.data.originalURL;
-        console.log('Trying to go to', originalURL);
+      const data = await getShortenedUrl(shortenedPart);
+      const originalURL = data.originalURL;
+      const redirectToURL = normalizeUrl(originalURL);
 
-        // Ensure that the URL has a protocol (https:// or http://)
-        const redirectToURL = /^https?:\/\//i.test(originalURL)
-          ? originalURL
-          : 'https://' + originalURL;
-        console.log('New URL:', redirectToURL);
-
-        if (typeof window !== 'undefined') {
-          window.location.href = redirectToURL;
-        }
-      } else {
-        console.log(response.status);
-        navigate('/url-shortener');
+      if (typeof window !== 'undefined') {
+        window.location.href = redirectToURL;
       }
     } catch (error) {
+      console.error('Error handling redirect:', error);
+      toast.error('Invalid or expired shortened URL');
       navigate('/url-shortener');
-
-      console.error('Error handling redirect:', error.message);
     }
   };
 
-  const handleCopy = () => {
-    // Copy the shortened URL to the clipboard
-    navigator.clipboard.writeText(`https://amanthakkar.com/${outputURL}`);
-    alert('Shortened URL copied to clipboard!');
+  const handleCopy = async () => {
+    try {
+      const urlToCopy = `https://amanthakkar.com/${outputURL}`;
+      await navigator.clipboard.writeText(urlToCopy);
+      toast.success('URL copied to clipboard!');
+    } catch (error) {
+      console.error('Failed to copy:', error);
+      toast.error('Failed to copy URL');
+    }
   };
 
-  const handleSubmit = async () => {
-    const submitObject = {
-      url: inputURL,
-    };
+  const handleSubmit = async (e) => {
+    if (e) {
+      e.preventDefault();
+    }
+
+    // Validate URL
+    if (!inputURL.trim()) {
+      setError('Please enter a URL');
+      toast.error('Please enter a URL');
+      return;
+    }
+
+    if (!isValidUrl(inputURL)) {
+      setError('Please enter a valid URL');
+      toast.error('Please enter a valid URL');
+      return;
+    }
+
+    setError('');
+    setIsLoading(true);
+
     try {
-      const response = await axios.post(
-        'https://cloud.amanthakkar.com/shorten',
-        submitObject
-      );
-      setOutputURL(response.data.value);
+      const normalizedUrl = normalizeUrl(inputURL);
+      const data = await shortenUrl(normalizedUrl);
+      setOutputURL(data.value);
+      toast.success('URL shortened successfully!');
     } catch (error) {
-      console.error('Error submitting data:', error.message);
+      console.error('Error shortening URL:', error);
+      setError('Failed to shorten URL. Please try again.');
+      toast.error('Failed to shorten URL. Please try again.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -131,19 +128,38 @@ function Shortener() {
             </header>
             <Container>
               <div className='container'>
-                <div className='input-container'>
-                  <input
-                    id='longURL'
-                    className='input-field'
-                    placeholder='Enter a URL to be shortened'
-                    value={inputURL}
-                    onChange={(e) => setInputURL(e.target.value)}
-                  />
-                </div>
+                <form onSubmit={handleSubmit}>
+                  <div className='input-container'>
+                    <input
+                      id='longURL'
+                      className='input-field'
+                      type="url"
+                      placeholder='Enter a URL to be shortened (e.g., https://example.com)'
+                      value={inputURL}
+                      onChange={(e) => {
+                        setInputURL(e.target.value);
+                        setError('');
+                      }}
+                      disabled={isLoading}
+                      aria-label="URL to shorten"
+                      aria-invalid={error ? 'true' : 'false'}
+                      aria-describedby={error ? 'url-error' : undefined}
+                    />
+                    {error && (
+                      <p id="url-error" style={{ color: 'red', fontSize: '0.9em', marginTop: '0.5rem' }}>
+                        {error}
+                      </p>
+                    )}
+                  </div>
 
-                <button className='submit-button' onClick={handleSubmit}>
-                  Shorten this URL!
-                </button>
+                  <button
+                    type="submit"
+                    className='submit-button'
+                    disabled={isLoading || !inputURL.trim()}
+                  >
+                    {isLoading ? 'Shortening...' : 'Shorten this URL!'}
+                  </button>
+                </form>
 
                 {outputURL && (
                   <div className='output-url'>
@@ -154,13 +170,20 @@ function Shortener() {
                           amanthakkar.com/{outputURL}
                         </a>
                       </span>{' '}
-                      <span
-                        role='img'
-                        aria-label='copy-icon'
+                      <button
+                        type="button"
                         onClick={handleCopy}
+                        aria-label='Copy shortened URL'
+                        style={{
+                          background: 'none',
+                          border: 'none',
+                          cursor: 'pointer',
+                          fontSize: '1.2em',
+                          padding: '0 0.5rem',
+                        }}
                       >
                         📋
-                      </span>
+                      </button>
                     </p>
                     <p>
                       {outputURL && (

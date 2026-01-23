@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import './Header.css'; // Import your CSS file
+import './Header.css';
+import { getVisitorCount } from '../../services/api';
 
 const Header = () => {
   const [showInfo, setShowInfo] = useState(false);
   const [visitorCount, setVisitorCount] = useState('Loading...');
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleMouseEnter = () => {
     setShowInfo(true);
@@ -12,43 +14,52 @@ const Header = () => {
   const handleMouseLeave = () => {
     setShowInfo(false);
   };
-  useEffect(() => {
-    async function getVisitorCount() {
-      const hasCookie = document.cookie.includes('lastVisited');
 
-      if (hasCookie) {
-        const response = await fetch(
-          `https://cloud.amanthakkar.com/api/old-visitor`
-        );
-        const data = await response.json();
-        setVisitorCount(data.count);
-      } else {
-        // grab the source from the url, if any
+  useEffect(() => {
+    async function fetchVisitorCount() {
+      try {
+        setIsLoading(true);
+        const hasCookie = document.cookie.includes('lastVisited');
+
+        // Get source from URL if present
         const urlParams = new URLSearchParams(window.location.search);
         const sourceParam = urlParams.get('source');
 
-        const response = await fetch(
-          `https://cloud.amanthakkar.com/api/new-visitor/?source=${sourceParam}`
-        );
-        const data = await response.json();
+        const data = await getVisitorCount(!hasCookie, sourceParam);
         setVisitorCount(data.count);
-      }
 
-      const expirationTime = new Date();
-      expirationTime.setTime(expirationTime.getTime() + 3 * 60 * 1000); // 3 minutes
-      document.cookie = `lastVisited=true; expires=${expirationTime.toUTCString()}`;
+        // Set cookie for returning visitors
+        if (!hasCookie) {
+          const expirationTime = new Date();
+          expirationTime.setTime(expirationTime.getTime() + 3 * 60 * 1000); // 3 minutes
+          document.cookie = `lastVisited=true; expires=${expirationTime.toUTCString()}`;
+        }
+      } catch (error) {
+        console.error('Failed to fetch visitor count:', error);
+        setVisitorCount('N/A');
+      } finally {
+        setIsLoading(false);
+      }
     }
-    getVisitorCount();
+    fetchVisitorCount();
   }, []);
   return (
     <div className='banner-style'>
       <span className='text-center'>
-        Unique Website Visits (since Oct '23): {visitorCount}{' '}
+        Unique Website Visits (since Oct '23):{' '}
+        {isLoading ? (
+          <span style={{ opacity: 0.7 }}>Loading...</span>
+        ) : (
+          visitorCount
+        )}{' '}
         <span
-          style={{ paddingLeft: '3px' }}
+          style={{ paddingLeft: '3px', cursor: 'help' }}
           className='info-icon'
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
+          role="button"
+          tabIndex={0}
+          aria-label="Information about visitor tracking"
         >
           ⓘ
         </span>

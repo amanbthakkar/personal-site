@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Container, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 import Main from '../layouts/Main';
 import Header from '../components/Header/Header';
-import Cell from '../components/Projects/Cell';
-import data from '../data/projects';
 
 import '../App.css';
 
@@ -43,7 +41,7 @@ function Indicator() {
                   <a
                     href='https://medium.com/datadriveninvestor/bitcoins-power-law-oscillator-the-code-a-summary-and-a-suggested-improvement-b78b59a2bc9c'
                     target='_blank'
-                    // rel='noopener noreferrer'
+                    rel='noopener noreferrer'
                   >
                     give it a read!
                   </a>
@@ -55,12 +53,14 @@ function Indicator() {
                   <Image
                     style={{
                       maxWidth: '100%',
-                      minWidth: '600px',
+                      width: '100%',
+                      height: 'auto',
                       paddingBlock: '10px',
                     }}
                     src={`https://bitcoin-indicator-script.s3.us-east-2.amazonaws.com/indicator.png?timestamp=${new Date().getTime()}`}
-                    alt='Bitcoin Indicator'
+                    alt='Bitcoin Power Law Oscillator Indicator showing buy/sell signals'
                     fluid
+                    loading="lazy"
                   />
                 </div>
               </Container>
@@ -89,9 +89,10 @@ function Indicator() {
                   <Image
                     src='/monkey1.jpg'
                     fluid
-                    alt='Monkey'
+                    alt='Monkey illustration representing simple explanation'
                     style={{ maxWidth: '60%', height: 'auto' }}
-                  ></Image>
+                    loading="lazy"
+                  />
                 </p>
 
                 <p> Pretty simple. Buy when dark blue, sell when dark red.</p>

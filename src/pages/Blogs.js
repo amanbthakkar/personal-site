@@ -7,28 +7,32 @@ import Header from '../components/Header/Header';
 import Cell from '../components/Projects/Cell';
 import data from '../data/projects';
 
-const Projects = () => (
+const Blogs = () => (
   <>
     <Header />
     <Main title='Blogs' description="Learn about Aman's blog posts.">
-      <article className='post' id='projects'>
+      <article className='post' id='blogs'>
         <header>
           <div className='title'>
             <h2>
-              <Link to='/blogs'>Projects</Link>
+              <Link to='/blogs'>Blogs</Link>
             </h2>
             <p>
               I wrote some blog posts. Coming soon... (visit my{' '}
-              <a href='https://medium.com/@amanbthakkar'>Medium</a> until then)
+              <a 
+                href='https://medium.com/@amanbthakkar'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                Medium
+              </a>{' '}
+              until then)
             </p>
           </div>
         </header>
-        {/* {data.map((project) => (
-          <Cell data={project} key={project.title} />
-        ))} */}
       </article>
     </Main>
   </>
 );
 
-export default Projects;
+export default Blogs;

@@ -14,10 +14,9 @@ const Stats = () => (
           <h2>
             <Link to='/stats'>Stats</Link>
           </h2>
+          <p>Statistics page coming soon...</p>
         </div>
       </header>
-      {/* <Personal /> */}
-      {/* <Site /> */}
     </article>
   </Main>
 );
