@@ -15,7 +15,7 @@ const data = [
   {
     title: 'amanthakkar.com',
     subtitle: 'This personal website + a live Bitcoin indicator',
-    link: 'amanthakkar.com',
+    link: 'https://amanthakkar.com',
     image: '/images/projects/amanthakkar.png',
     date: '2023-10-20',
     desc:

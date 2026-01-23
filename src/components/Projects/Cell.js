@@ -6,7 +6,15 @@ const Cell = ({ data }) => (
   <div className="cell-container">
     <article className="mini-post">
       <header>
-        <h3><a href={data.link}>{data.title}</a></h3>
+        <h3>
+          <a 
+            href={data.link} 
+            target={data.link.startsWith('http') ? '_blank' : undefined}
+            rel={data.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+          >
+            {data.title}
+          </a>
+        </h3>
         <time className="published">{dayjs(data.date).format('MMMM, YYYY')}</time>
       </header>
       <a href={data.link} className="image">
