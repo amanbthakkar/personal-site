@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense, lazy } from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Main from './layouts/Main'; // fallback for lazy pages
 import './static/css/main.scss'; // All of our styles
@@ -17,7 +17,6 @@ const Resume = lazy(() => import('./pages/Resume'));
 const Blogs = lazy(() => import('./pages/Blogs'));
 const Indicator = lazy(() => import('./pages/Indicator'));
 const Shortener = lazy(() => import('./pages/Shortener'));
-const Gauri = lazy(() => import('./pages/Gauri'));
 const App = () => {
   return (
     <>
@@ -35,8 +34,7 @@ const App = () => {
             <Route path='/contact' element={<Contact />} />
             <Route path='/resume' element={<Resume />} />
             <Route path='/url-shortener' element={<Shortener />} />
-            <Route path='/gauris' element={<Gauri />} />
-            <Route path='*' element={<Shortener />} />
+            <Route path='*' element={<NotFound />} />
           </Routes>
         </Suspense>
       </BrowserRouter>

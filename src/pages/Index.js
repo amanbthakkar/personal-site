@@ -14,7 +14,7 @@ const Index = () => {
         .then((r) => r.text())
         .then(setMarkdown);
     });
-  });
+  }, []);
 
   return (
     <>
