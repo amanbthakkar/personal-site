@@ -16,7 +16,7 @@ const work = [
     name: 'Meta Platforms, Inc.',
     position: 'Software Performance and Capacity Engineer',
     startDate: '2025-06-23',
-    summary: `Just joined Meta as a Software Performance and Capacity Engineer. Please reach out to me if you'd like to know more!
+    summary: `Recently joined Meta as a Software Performance and Capacity Engineer. Excited to contribute to Meta's infrastructure and performance optimization efforts.
     `,
     highlights: [,],
   },
@@ -25,7 +25,7 @@ const work = [
     position: 'Cloud Applications Developer II',
     startDate: '2024-02-12',
     endDate: '2025-06-16',
-    summary: `I worked on building the cloud platform for the next generation of Aruba's (a Hewlett Packard Enterprise company) enterprise switches.
+    summary: `Developed the cloud platform for Aruba's (a Hewlett Packard Enterprise company) next-generation enterprise switches.
     `,
     highlights: [
       'Detected & resolved race conditions in concurrent goroutines by redesigning high-volume message processing pipeline',
@@ -57,8 +57,7 @@ const work = [
     position: 'Software Developer',
     startDate: '2019-07-19',
     endDate: '2022-08-02',
-    summary: `Barclays Global Service Center (BGSC) is a global capability center of Barclays Bank PLCI worked with Payment Sanctions in the Financial Crimes
-    Division, on multiple projects and internal services.`,
+    summary: `Barclays Global Service Center (BGSC) is a global capability center of Barclays Bank PLC. I worked with Payment Sanctions in the Financial Crimes Division on multiple projects and internal services.`,
     highlights: [
       'Saved USD 30,000 in capital costs by developing an in-house website using React for Operations to flag fraudulent transactions',
       'Led cross functional effort to develop, test and deploy new payment route configurations for real-time, cross-border euro transfers',
