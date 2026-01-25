@@ -17,13 +17,6 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-    <script>
-        // GitHub Pages 404.html redirect - redirects to index.html so React Router can handle routing
-        var path = window.location.pathname;
-        var search = window.location.search;
-        var hash = window.location.hash;
-        window.location.replace('/' + (path + search + hash).replace(/\/+/g, '/').replace(/^\/+/, ''));
-    </script>
 </head>
 <body>
     <div id="root"></div>
