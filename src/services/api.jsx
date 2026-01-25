@@ -62,8 +62,18 @@ export const getShortenedUrl = async (shortCode) => {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    const data = await response.json();
-    return data;
+    const text = await response.text();
+    // Check if response is "Shortened URL not found" (plain text)
+    if (text === 'Shortened URL not found' || text.trim() === 'Shortened URL not found') {
+      throw new Error('Shortened URL not found');
+    }
+    // Try to parse as JSON
+    try {
+      const data = JSON.parse(text);
+      return data;
+    } catch (parseError) {
+      throw new Error('Invalid response from server');
+    }
   } catch (error) {
     console.error('Error fetching shortened URL:', error);
     throw error;
