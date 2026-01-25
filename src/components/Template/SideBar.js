@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom';
 
 import ContactIcons from '../Contact/ContactIcons';
 
-const { PUBLIC_URL } = process.env; // set automatically from package.json:homepage
+// Vite uses import.meta.env.BASE_URL instead of process.env.PUBLIC_URL
+const PUBLIC_URL = import.meta.env.BASE_URL || '/';
 
 const SideBar = () => (
   <section id='sidebar'>
     <section id='intro'>
       <Link to='/' className='logo'>
-        <img src={`${PUBLIC_URL}/images/me.jpg`} alt='' />
+        <img src={`${PUBLIC_URL}/images/me.jpg`} alt='Aman Thakkar' />
       </Link>
       <header>
         <h2>Aman Thakkar</h2>

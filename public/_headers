@@ -1,0 +1,6 @@
+# Security Headers for GitHub Pages
+# Note: GitHub Pages doesn't support custom headers via _headers file
+# These would need to be set via meta tags or a service worker
+# For now, we'll rely on GitHub Pages default security
+
+# Content Security Policy can be set via meta tags in index.html if needed

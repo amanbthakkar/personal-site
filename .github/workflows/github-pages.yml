@@ -39,37 +39,12 @@ jobs:
           cache: "npm"
       - name: Install
         run: npm ci
-      - name: Build and Render
-        shell: bash
-        run: |
-          # NOTE: Rendering can be flaky and react-snap is no
-          # longer maintained, so retry until I convert to next.
-          function retry {
-            local n=1
-            local max=5
-            local delay=1
-            while true; do
-            export PUPPETEER_EXECUTABLE_PATH=$(which google-chrome)
-              "$@" && break || {
-                if [[ $n -lt $max ]]; then
-                  ((n++))
-                  echo "Command failed. Attempt $n/$max:"
-                  sleep $delay;
-                else
-                  echo "The command has failed after $n attempts."
-                  return 1
-                fi
-              }
-            done
-          }
-          retry npm run predeploy
+      - name: Build
+        run: npm run build
         env:
           NODE_ENV: production
-          PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true
-          PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome
-          PUPPETEER_ARGS: --no-sandbox --disable-setuid-sandbox
-          # Remove this line if you would like to skip using google analytics
-          # REACT_APP_GA_MEASUREMENT_ID: G-S0GGS3BXDF
+          # Add Google Analytics ID here if needed
+          # VITE_GA_MEASUREMENT_ID: G-S0GGS3BXDF
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
