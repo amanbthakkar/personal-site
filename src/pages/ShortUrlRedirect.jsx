@@ -1,46 +1,35 @@
 import { useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { getShortenedUrl } from '../services/api';
 import { normalizeUrl } from '../utils/urlValidation';
 
 /**
  * Component to handle shortened URL redirects
- * This intercepts unknown routes and checks if they're shortened URLs
+ * This only runs for routes that React Router didn't match (catch-all)
+ * Flow: Check if it's a shortened URL -> redirect to original URL
+ *       If not a shortened URL -> redirect to homepage
  */
 const ShortUrlRedirect = () => {
-  const { '*': path } = useParams();
-  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const checkAndRedirect = async () => {
-      if (!path) {
-        // No path, go to homepage
-        navigate('/', { replace: true });
+      // Get the pathname (e.g., "/8843c77" or "/some/unknown/path")
+      const pathname = location.pathname;
+      
+      // Remove leading slash to get the path segment
+      const pathWithoutSlash = pathname.replace(/^\/+/, '');
+      
+      if (!pathWithoutSlash) {
+        // Empty path, go to homepage
+        window.location.href = 'https://amanthakkar.com/';
         return;
       }
 
       // Extract the first part of the path (the potential short code)
-      const pathParts = path.split('/');
+      // e.g., "8843c77" from "/8843c77" or "some" from "/some/unknown/path"
+      const pathParts = pathWithoutSlash.split('/');
       const shortCode = pathParts[0];
-
-      // Skip if it's a known route
-      const knownRoutes = [
-        'resume',
-        'projects',
-        'blogs',
-        'contact',
-        'url-shortener',
-        'power-law-oscillator-indicator',
-        'static',
-        'images',
-        'data',
-      ];
-
-      if (knownRoutes.includes(shortCode.toLowerCase())) {
-        // It's a known route, let React Router handle it (shouldn't reach here)
-        navigate('/', { replace: true });
-        return;
-      }
 
       // Check if it's a shortened URL
       try {
@@ -49,9 +38,7 @@ const ShortUrlRedirect = () => {
         const redirectToURL = normalizeUrl(originalURL);
 
         // Redirect to the original URL
-        if (typeof window !== 'undefined') {
-          window.location.href = redirectToURL;
-        }
+        window.location.href = redirectToURL;
       } catch (error) {
         // Not a valid shortened URL, redirect to homepage
         console.log(`Path "${shortCode}" is not a shortened URL, redirecting to homepage`);
@@ -60,7 +47,7 @@ const ShortUrlRedirect = () => {
     };
 
     checkAndRedirect();
-  }, [path, navigate]);
+  }, [location.pathname]);
 
   // Show loading state while checking
   return (
