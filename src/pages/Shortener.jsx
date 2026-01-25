@@ -99,12 +99,6 @@ function Shortener() {
     }
   };
 
-  const formatInputURL = () => {
-    if (inputURL.length > 40) {
-      return `${inputURL.substring(0, 35)}...`;
-    }
-    return inputURL;
-  };
   return (
     <>
       {' '}

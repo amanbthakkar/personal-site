@@ -5,7 +5,6 @@ import Main from '../layouts/Main';
 import Header from '../components/Header/Header';
 
 import Cell from '../components/Projects/Cell';
-import data from '../data/projects';
 
 const Blogs = () => (
   <>

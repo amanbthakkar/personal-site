@@ -18,7 +18,7 @@ const work = [
     startDate: '2025-06-23',
     summary: `Recently joined Meta as a Software Performance and Capacity Engineer. Excited to contribute to Meta's infrastructure and performance optimization efforts.
     `,
-    highlights: [,],
+    highlights: [],
   },
   {
     name: 'Hewlett Packard Enterprise',

@@ -43,9 +43,10 @@ const Resume = () => (
             </div>
           </div>
         </header>
-        {Object.entries(sections).map(([name, Section]) => (
-          <Section key={name} />
-        ))}
+        {Object.entries(sections).map(([name, SectionComponent]) => {
+          const Component = SectionComponent;
+          return <Component key={name} />;
+        })}
       </article>
     </Main>
   </>
