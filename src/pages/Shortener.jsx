@@ -48,8 +48,8 @@ function Shortener() {
       }
     } catch (error) {
       console.error('Error handling redirect:', error);
-      toast.error('Invalid or expired shortened URL');
-      navigate('/url-shortener');
+      // Invalid shortened URL - redirect to homepage
+      window.location.href = 'https://amanthakkar.com/';
     }
   };
 

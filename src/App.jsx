@@ -14,7 +14,6 @@ const PUBLIC_URL = import.meta.env.BASE_URL || '/';
 import Contact from './pages/Contact';
 import Index from './pages/Index';
 import NotFound from './pages/NotFound';
-import ShortUrlRedirect from './pages/ShortUrlRedirect';
 
 // Heavy pages are lazy-loaded
 const Projects = lazy(() => import('./pages/Projects'));
@@ -41,7 +40,7 @@ const App = () => {
             <Route path='/contact' element={<Contact />} />
             <Route path='/resume' element={<Resume />} />
             <Route path='/url-shortener' element={<Shortener />} />
-            <Route path='*' element={<ShortUrlRedirect />} />
+            <Route path='*' element={<Shortener />} />
           </Routes>
         </Suspense>
       </BrowserRouter>
