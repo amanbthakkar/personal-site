@@ -51,33 +51,10 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
       - run: npm ci
-      - name: Build and Statically Render
-        shell: bash
-        run: |
-          function retry {
-            local n=1
-            local max=5
-            local delay=1
-            while true; do
-              export PUPPETEER_EXECUTABLE_PATH=$(which google-chrome)
-              "$@" && break || {
-                if [[ $n -lt $max ]]; then
-                  ((n++))
-                  echo "Command failed. Attempt $n/$max:"
-                  sleep $delay;
-                else
-                  echo "The command has failed after $n attempts."
-                  return 1
-                fi
-              }
-            done
-          }
-          retry npm run predeploy
+      - name: Build
+        run: npm run build
         env:
-          NODE_ENV: development
-          PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true
-          PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome
-          PUPPETEER_ARGS: --no-sandbox --disable-setuid-sandbox
+          NODE_ENV: production
       - name: Test
         run: npm test
         env:
