@@ -1,33 +1,65 @@
-import { API_ENDPOINTS } from '../constants/api';
+import {
+  API_ENDPOINTS,
+  ANALYTICS_FALLBACK_TOTAL,
+} from '../constants/api';
 
 /**
- * Get visitor count - checks if user is new or returning
- * @param {boolean} isNewVisitor - Whether this is a new visitor
+ * Record or fetch visitor count using Pi homelab APIs (with legacy fallback).
+ * @param {boolean} isNewVisitor - Whether this is a new visitor (no session cookie)
  * @param {string|null} source - Optional source parameter from URL
- * @returns {Promise<{count: number}>}
+ * @returns {Promise<{count: number, offline?: boolean}>}
  */
 export const getVisitorCount = async (isNewVisitor, source = null) => {
   try {
-    const url = isNewVisitor
-      ? `${API_ENDPOINTS.NEW_VISITOR}${source ? `/?source=${source}` : ''}`
-      : API_ENDPOINTS.OLD_VISITOR;
-
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+    if (isNewVisitor) {
+      const params = new URLSearchParams();
+      if (source) params.set('source', source);
+      const qs = params.toString();
+      const url = `${API_ENDPOINTS.NEW_VISITOR}${qs ? `?${qs}` : ''}`;
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const data = await response.json();
+      const count = data.total ?? data.count;
+      if (count === undefined || count === null) throw new Error('Invalid payload');
+      return { count };
     }
-    const data = await response.json();
-    return data;
+
+    const response = await fetch(API_ENDPOINTS.VISITOR_COUNT);
+    if (response.ok) {
+      const data = await response.json();
+      if (data.total !== undefined) return { count: data.total };
+    }
+
+    const legacy = await fetch(API_ENDPOINTS.OLD_VISITOR);
+    if (!legacy.ok) throw new Error(`HTTP ${legacy.status}`);
+    const data = await legacy.json();
+    const count = data.count ?? data.total;
+    if (count === undefined || count === null) throw new Error('Invalid payload');
+    return { count };
   } catch (error) {
     console.error('Error fetching visitor count:', error);
-    throw error;
+    return { count: ANALYTICS_FALLBACK_TOTAL, offline: true };
   }
 };
 
 /**
- * Shorten a URL
- * @param {string} url - The URL to shorten
- * @returns {Promise<{value: string}>}
+ * Fetch source breakdown (optional UI).
+ * @returns {Promise<{sources: Array, total?: number, offline?: boolean}>}
+ */
+export const getVisitorStats = async () => {
+  try {
+    const response = await fetch(API_ENDPOINTS.STATS);
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const data = await response.json();
+    return { ...data, offline: false };
+  } catch (error) {
+    console.error('Error fetching visitor stats:', error);
+    return { sources: [], total: ANALYTICS_FALLBACK_TOTAL, offline: true };
+  }
+};
+
+/**
+ * Shorten a URL (legacy — backend shortener removed on Pi).
  */
 export const shortenUrl = async (url) => {
   try {
@@ -52,9 +84,7 @@ export const shortenUrl = async (url) => {
 };
 
 /**
- * Get original URL from shortened code
- * @param {string} shortCode - The shortened URL code
- * @returns {Promise<{originalURL: string}>}
+ * Get original URL from shortened code (legacy — backend shortener removed on Pi).
  */
 export const getShortenedUrl = async (shortCode) => {
   try {
@@ -63,11 +93,9 @@ export const getShortenedUrl = async (shortCode) => {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const text = await response.text();
-    // Check if response is "Shortened URL not found" (plain text)
     if (text === 'Shortened URL not found' || text.trim() === 'Shortened URL not found') {
       throw new Error('Shortened URL not found');
     }
-    // Try to parse as JSON
     try {
       const data = JSON.parse(text);
       return data;

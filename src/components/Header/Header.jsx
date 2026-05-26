@@ -1,78 +1,105 @@
 import React, { useState, useEffect } from 'react';
 import './Header.css';
-import { getVisitorCount } from '../../services/api';
+import { getVisitorCount, getVisitorStats } from '../../services/api';
 
 const Header = () => {
   const [showInfo, setShowInfo] = useState(false);
-  const [visitorCount, setVisitorCount] = useState('Loading...');
+  const [showSources, setShowSources] = useState(false);
+  const [visitorCount, setVisitorCount] = useState('…');
+  const [sources, setSources] = useState([]);
+  const [offline, setOffline] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-
-  const handleMouseEnter = () => {
-    setShowInfo(true);
-  };
-
-  const handleMouseLeave = () => {
-    setShowInfo(false);
-  };
 
   useEffect(() => {
     async function fetchVisitorCount() {
       try {
         setIsLoading(true);
-        
-        // Check if cookie exists
-        // Note: Cookies may not work on localhost in Chrome/Edge, but will work in production
-        const hasCookie = document.cookie.includes('lastVisited');
 
-        // Get source from URL if present
+        const hasCookie = document.cookie.includes('lastVisited');
         const urlParams = new URLSearchParams(window.location.search);
         const sourceParam = urlParams.get('source');
 
-        const data = await getVisitorCount(!hasCookie, sourceParam);
-        setVisitorCount(data.count);
+        const [countData, statsData] = await Promise.all([
+          getVisitorCount(!hasCookie, sourceParam),
+          getVisitorStats(),
+        ]);
 
-        // Set/update cookie on every visit - reset expiry to 10 minutes
-        // This tracks if user has been active in the last 10 minutes
-        // Works in production (amanthakkar.com), may not work on localhost due to browser restrictions
+        setVisitorCount(countData.count);
+        setOffline(Boolean(countData.offline || statsData.offline));
+        setSources(statsData.sources || []);
+
         const expirationTime = new Date();
-        expirationTime.setTime(expirationTime.getTime() + 10 * 60 * 1000); // 10 minutes
+        expirationTime.setTime(expirationTime.getTime() + 10 * 60 * 1000);
         document.cookie = `lastVisited=true; expires=${expirationTime.toUTCString()}; path=/`;
       } catch (error) {
         console.error('Failed to fetch visitor count:', error);
         setVisitorCount('N/A');
+        setOffline(true);
       } finally {
         setIsLoading(false);
       }
     }
     fetchVisitorCount();
   }, []);
+
   return (
     <div className='banner-style'>
       <span className='text-center'>
-        Unique Website Visits (since Oct '23):{' '}
+        Site visits:{' '}
         {isLoading ? (
-          <span style={{ opacity: 0.7 }}>Loading...</span>
+          <span style={{ opacity: 0.7 }}>Loading…</span>
         ) : (
-          visitorCount
+          <>
+            <strong>{visitorCount}</strong>
+            {offline && (
+              <span
+                style={{ fontSize: '0.75rem', opacity: 0.85, marginLeft: '0.25rem' }}
+                title='API unreachable — showing cached baseline'
+              >
+                (cached)
+              </span>
+            )}
+          </>
+        )}{' '}
+        {!isLoading && sources.length > 0 && !offline && (
+          <button
+            type='button'
+            className='btn btn-link btn-sm text-white p-0 align-baseline'
+            onClick={() => setShowSources((v) => !v)}
+          >
+            {showSources ? 'Hide sources' : 'Sources'}
+          </button>
         )}{' '}
         <span
           style={{ paddingLeft: '3px', cursor: 'help' }}
           className='info-icon'
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          role="button"
+          onMouseEnter={() => setShowInfo(true)}
+          onMouseLeave={() => setShowInfo(false)}
+          role='button'
           tabIndex={0}
-          aria-label="Information about visitor tracking"
+          aria-label='Information about visitor tracking'
         >
           ⓘ
         </span>
       </span>
+      {showSources && sources.length > 0 && (
+        <ul
+          className='list-unstyled small text-center mb-0 mt-1'
+          style={{ maxWidth: '320px', margin: '0 auto' }}
+        >
+          {sources.slice(0, 6).map((s) => (
+            <li key={s.key}>
+              {s.label}: {s.count}
+              {s.percent != null ? ` (${s.percent}%)` : ''}
+            </li>
+          ))}
+        </ul>
+      )}
       {showInfo && (
         <div className='info-bar text-center'>
-          This website uses cookies and URL tracking. Only user visits are
-          tracked and no personal information is used or stored.
-          <br />
-          Visit count is maintained using Redis.
+          This site uses a short-lived cookie to avoid double-counting reloads.
+          Counts are stored on a self-hosted backend (Redis). No personal data is
+          collected.
         </div>
       )}
     </div>
