@@ -43,8 +43,7 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: production
-          # Add Google Analytics ID here if needed
-          # VITE_GA_MEASUREMENT_ID: G-S0GGS3BXDF
+          VITE_GA_MEASUREMENT_ID: G-GDRFCMH8L9
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact

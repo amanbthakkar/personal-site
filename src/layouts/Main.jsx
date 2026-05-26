@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 
-import Analytics from '../components/Template/Analytics';
 import Navigation from '../components/Template/Navigation';
 import SideBar from '../components/Template/SideBar';
 import ScrollToTop from '../components/Template/ScrollToTop';
@@ -12,7 +11,6 @@ import StructuredData from '../components/StructuredData/StructuredData';
 const Main = (props) => (
   <>
     <HelmetProvider>
-      <Analytics />
       <ScrollToTop />
       <Helmet
         titleTemplate='%s | Aman Thakkar'

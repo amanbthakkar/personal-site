@@ -4,6 +4,7 @@ import Main from './layouts/Main'; // fallback for lazy pages
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import ToastProvider from './components/Toast/ToastProvider';
 import ScrollRestoration from './components/ScrollRestoration/ScrollRestoration';
+import Analytics from './components/Template/Analytics';
 import './static/css/main.scss'; // All of our styles
 
 // Vite uses import.meta.env instead of process.env
@@ -25,6 +26,7 @@ const App = () => {
     <ErrorBoundary>
       <ToastProvider />
       <BrowserRouter basename={PUBLIC_URL}>
+        <Analytics />
         <ScrollRestoration />
         <Suspense fallback={<Main />}>
           <Routes>

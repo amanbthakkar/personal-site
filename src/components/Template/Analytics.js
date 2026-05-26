@@ -1,26 +1,44 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga4';
 
-// Vite uses import.meta.env instead of process.env
-const NODE_ENV = import.meta.env.MODE;
-const GA_TRACKING_ID = import.meta.env.VITE_GA_TRACKING_ID;
+const MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID;
+const IS_PRODUCTION = import.meta.env.PROD;
 
-if (NODE_ENV === 'production' && GA_TRACKING_ID) {
-  ReactGA.initialize(GA_TRACKING_ID);
+let gaInitialized = false;
+
+function ensureGAInitialized() {
+  if (gaInitialized || !IS_PRODUCTION || !MEASUREMENT_ID) {
+    return false;
+  }
+  ReactGA.initialize(MEASUREMENT_ID, {
+    gtagOptions: {
+      // Manual SPA pageviews only — avoids duplicate hits on load + route change.
+      send_page_view: false,
+    },
+  });
+  gaInitialized = true;
+  return true;
 }
 
+/**
+ * Tracks GA4 pageviews on React Router navigation (production only).
+ */
 const Analytics = () => {
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
 
   useEffect(() => {
-    if (NODE_ENV === 'production') {
-      ReactGA.set({
-        page: pathname,
-      });
-      ReactGA.pageview(pathname);
+    if (!ensureGAInitialized()) {
+      return;
     }
-  }, [pathname]);
+
+    const page = `${pathname}${search}`;
+    ReactGA.send({
+      hitType: 'pageview',
+      page,
+      title: document.title,
+    });
+  }, [pathname, search]);
 
   return null;
 };
