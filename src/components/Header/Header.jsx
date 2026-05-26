@@ -11,35 +11,47 @@ const Header = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchVisitorCount() {
-      try {
-        setIsLoading(true);
+    let cancelled = false;
 
-        const hasCookie = document.cookie.includes('lastVisited');
-        const urlParams = new URLSearchParams(window.location.search);
-        const sourceParam = urlParams.get('source');
+    async function load() {
+      setIsLoading(true);
+      const hasCookie = document.cookie.includes('lastVisited');
+      const sourceParam = new URLSearchParams(window.location.search).get('source');
 
-        const [countData, statsData] = await Promise.all([
-          getVisitorCount(!hasCookie, sourceParam),
-          getVisitorStats(),
-        ]);
+      const countData = await getVisitorCount(!hasCookie, sourceParam);
+      if (cancelled) return;
 
-        setVisitorCount(countData.count);
-        setOffline(Boolean(countData.offline || statsData.offline));
-        setSources(statsData.sources || []);
+      setVisitorCount(countData.count);
+      setOffline(Boolean(countData.offline));
+      setIsLoading(false);
 
-        const expirationTime = new Date();
-        expirationTime.setTime(expirationTime.getTime() + 10 * 60 * 1000);
-        document.cookie = `lastVisited=true; expires=${expirationTime.toUTCString()}; path=/`;
-      } catch (error) {
-        console.error('Failed to fetch visitor count:', error);
-        setVisitorCount('N/A');
+      const expirationTime = new Date();
+      expirationTime.setTime(expirationTime.getTime() + 10 * 60 * 1000);
+      document.cookie = `lastVisited=true; expires=${expirationTime.toUTCString()}; path=/`;
+
+      const statsData = await getVisitorStats();
+      if (cancelled) return;
+
+      if (statsData.sources?.length) {
+        setSources(statsData.sources);
+      }
+      if (statsData.offline) {
         setOffline(true);
-      } finally {
-        setIsLoading(false);
       }
     }
-    fetchVisitorCount();
+
+    load().catch((error) => {
+      console.error('Failed to fetch visitor count:', error);
+      if (!cancelled) {
+        setVisitorCount('N/A');
+        setOffline(true);
+        setIsLoading(false);
+      }
+    });
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   return (

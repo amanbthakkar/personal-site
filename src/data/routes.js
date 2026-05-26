@@ -25,10 +25,6 @@ const routes = [
     path: '/power-law-oscillator-indicator',
   },
   {
-    label: 'URL Shortener',
-    path: '/url-shortener',
-  },
-  {
     label: 'Contact',
     path: '/contact',
   },
