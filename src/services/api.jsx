@@ -53,7 +53,7 @@ export const getVisitorCount = async (isNewVisitor, source = null) => {
 };
 
 /**
- * Fetch source breakdown (optional UI).
+ * Fetch source breakdown (API/admin only — not used in public header UI).
  */
 export const getVisitorStats = async () => {
   try {
