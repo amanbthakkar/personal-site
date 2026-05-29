@@ -44,6 +44,7 @@ jobs:
         env:
           NODE_ENV: production
           VITE_GA_MEASUREMENT_ID: G-GDRFCMH8L9
+          VITE_FRONTEND_NEWSFEED: "false"
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact

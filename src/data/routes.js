@@ -1,3 +1,5 @@
+import { featureFlags } from '../config/featureFlags';
+
 const routes = [
   {
     index: true,
@@ -12,6 +14,14 @@ const routes = [
     label: 'Resume',
     path: '/resume',
   },
+  ...(featureFlags.frontendNewsfeed
+    ? [
+        {
+          label: 'Discover',
+          path: '/feed',
+        },
+      ]
+    : []),
   {
     label: 'Projects',
     path: '/projects',

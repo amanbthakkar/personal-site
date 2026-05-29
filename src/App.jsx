@@ -5,6 +5,7 @@ import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import ToastProvider from './components/Toast/ToastProvider';
 import ScrollRestoration from './components/ScrollRestoration/ScrollRestoration';
 import Analytics from './components/Template/Analytics';
+import { featureFlags } from './config/featureFlags';
 import './static/css/main.scss'; // All of our styles
 
 // Vite uses import.meta.env instead of process.env
@@ -21,6 +22,7 @@ const Projects = lazy(() => import('./pages/Projects'));
 const Resume = lazy(() => import('./pages/Resume'));
 const Blogs = lazy(() => import('./pages/Blogs'));
 const Indicator = lazy(() => import('./pages/Indicator'));
+const Feed = lazy(() => import('./pages/Feed'));
 const App = () => {
   return (
     <ErrorBoundary>
@@ -40,6 +42,9 @@ const App = () => {
             <Route path='/blogs' element={<Blogs />} />
             <Route path='/contact' element={<Contact />} />
             <Route path='/resume' element={<Resume />} />
+            {featureFlags.frontendNewsfeed ? (
+              <Route path='/feed' element={<Feed />} />
+            ) : null}
             <Route path='*' element={<NotFound />} />
           </Routes>
         </Suspense>
