@@ -1,20 +1,61 @@
-import React from 'react';
-import { Container, Image } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Container, Image, Spinner } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 import Main from '../layouts/Main';
 import Header from '../components/Header/Header';
+import MetricsStrip from '../components/Indicator/MetricsStrip';
+import ViewToggle from '../components/Indicator/ViewToggle';
+import IndicatorChart from '../components/Indicator/IndicatorChart';
+import {
+  INDICATOR_JSON_URL,
+  INDICATOR_PNG_URL,
+  viewById,
+} from '../components/Indicator/viewCopy';
 
 import '../App.css';
+import '../components/Indicator/Indicator.css';
 
 function Indicator() {
+  const [viewId, setViewId] = useState('plo_decile');
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch(`${INDICATOR_JSON_URL}?t=${Date.now()}`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const json = await res.json();
+        if (!cancelled) {
+          setData(json);
+          setError(null);
+        }
+      } catch (err) {
+        if (!cancelled) {
+          setError(err.message || 'Failed to load indicators');
+          setData(null);
+        }
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const view = viewById(viewId);
+  const showPloTldr = view.group === 'power' && viewId !== 'corridor';
+
   return (
     <>
-      {' '}
       <Header />
       <Main
         title='Bitcoin Indicator'
-        description='A little bit about an indicator I created for Bitcoin'
+        description='Interactive Bitcoin cycle indicators: power-law oscillator, risk gauges, and classic overlays — updated daily.'
       >
         <div>
           <article className='post' id='projects'>
@@ -29,80 +70,87 @@ function Indicator() {
               </div>
             </header>
             <Container>
-              <Container>
-                <p>
-                  <h6>What's this chart?</h6>
-                  This chart is based on the Power Law Oscillator model for
-                  Bitcoin, to which I made some tweaks in order to make it more
-                  accurate based on recent price action. I have written an
-                  in-depth explanation about the model and how it works, and how
-                  you could code it yourself. If you're interested in diving
-                  deeper,{' '}
-                  <a
-                    href='https://medium.com/datadriveninvestor/bitcoins-power-law-oscillator-the-code-a-summary-and-a-suggested-improvement-b78b59a2bc9c'
-                    target='_blank'
-                    rel='noopener noreferrer'
-                  >
-                    give it a read!
-                  </a>
-                </p>
-                <p className='update-text '>
-                  This image is updated every day at midnight UTC.
-                </p>{' '}
-                <div style={{ maxWidth: '100%', overflow: 'auto' }}>
-                  <Image
-                    style={{
-                      maxWidth: '100%',
-                      width: '100%',
-                      height: 'auto',
-                      paddingBlock: '10px',
-                    }}
-                    src={`https://cloud.amanthakkar.com/indicator.png?timestamp=${new Date().getTime()}`}
-                    alt='Bitcoin Power Law Oscillator Indicator showing buy/sell signals'
-                    fluid
-                    loading="lazy"
-                  />
+              <p>
+                <h6>What&apos;s this?</h6>
+                Interactive charts built from Bitcoin&apos;s daily price history.
+                The default view is the Power Law Oscillator (expanding log-log
+                residual) with percentile coloring — the model I wrote about on{' '}
+                <a
+                  href='https://medium.com/datadriveninvestor/bitcoins-power-law-oscillator-the-code-a-summary-and-a-suggested-improvement-b78b59a2bc9c'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  Medium
+                </a>
+                . Toggle other price-based cycle gauges below. Models recompute
+                daily around midnight UTC on my homelab.
+              </p>
+
+              {loading && (
+                <div className='text-center my-4'>
+                  <Spinner animation='border' role='status' />
+                  <p className='update-text mt-2'>Loading indicator data…</p>
                 </div>
-              </Container>
-              <Container>
-                <p>
-                  <h6 className='mb-3'>How should you interpret this?</h6>
-                  The oscillator (a value that lies between -1 and 1) can be
-                  used as a tool that helps us understand if Bitcoin's price is
-                  too high or too low compared to its historical patterns. Think
-                  of it like a gauge. It looks at Bitcoin's current price and
-                  compares it to where it's expected to be "on average" based on
-                  past data. When the gauge is in the red zone, it might mean
-                  Bitcoin is getting overvalued, and selling could be a good
-                  idea. But when it's in the blue zone, it might be a good time
-                  to buy because Bitcoin could be undervalued.{' '}
-                </p>
-                <p>
-                  The plot above is a scatterplot of Bitcoin's price color-coded
-                  on which percentile the oscillator value belongs to at any
-                  given point in time (you may want to read the article linked
-                  above). Blue regions are closer to the 10th percentile, while
-                  red regions are closer to the 90th percentile.
-                </p>
-                <p>
-                  <h6 className='mb-3'>Too long, didn't read?</h6>
+              )}
+
+              {!loading && data && (
+                <>
+                  <MetricsStrip latest={data.latest} />
+                  <ViewToggle activeId={viewId} onChange={setViewId} />
+                  <IndicatorChart data={data} viewId={viewId} />
+                  <p className='update-text'>
+                    As of {data.as_of} · updated {data.updated_at} · price-based
+                    models only (Cowen-style is an open recreation, not official
+                    ITC)
+                  </p>
+                  <p className='indicator-blurb'>{view.blurb}</p>
+                </>
+              )}
+
+              {!loading && error && (
+                <>
+                  <p className='update-text'>
+                    Interactive data unavailable ({error}). Showing the daily PNG
+                    fallback.
+                  </p>
+                  <div style={{ maxWidth: '100%', overflow: 'auto' }}>
+                    <Image
+                      style={{
+                        maxWidth: '100%',
+                        width: '100%',
+                        height: 'auto',
+                        paddingBlock: '10px',
+                      }}
+                      src={`${INDICATOR_PNG_URL}?timestamp=${Date.now()}`}
+                      alt='Bitcoin Power Law Oscillator Indicator'
+                      fluid
+                      loading='lazy'
+                    />
+                  </div>
+                </>
+              )}
+
+              {showPloTldr && (
+                <>
+                  <h6 className='mb-3 mt-4'>Too long, didn&apos;t read?</h6>
                   <Image
                     src='/monkey1.jpg'
                     fluid
                     alt='Monkey illustration representing simple explanation'
                     style={{ maxWidth: '60%', height: 'auto' }}
-                    loading="lazy"
+                    loading='lazy'
                   />
-                </p>
+                  <p className='mt-2'>
+                    Pretty simple. Buy when dark blue, sell when dark red.
+                  </p>
+                </>
+              )}
 
-                <p> Pretty simple. Buy when dark blue, sell when dark red.</p>
-
-                <p>
-                  It's important to note that the oscillator is not flawless and
-                  should not be the sole basis for investment decisions (don't
-                  sue me!)
-                </p>
-              </Container>
+              <p className='mt-3'>
+                It&apos;s important to note that none of these oscillators are
+                flawless and should not be the sole basis for investment
+                decisions (don&apos;t sue me!)
+              </p>
             </Container>
           </article>
         </div>
