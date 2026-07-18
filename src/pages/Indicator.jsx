@@ -57,7 +57,7 @@ function Indicator() {
                       height: 'auto',
                       paddingBlock: '10px',
                     }}
-                    src={`https://bitcoin-indicator-script.s3.us-east-2.amazonaws.com/indicator.png?timestamp=${new Date().getTime()}`}
+                    src={`https://cloud.amanthakkar.com/indicator.png?timestamp=${new Date().getTime()}`}
                     alt='Bitcoin Power Law Oscillator Indicator showing buy/sell signals'
                     fluid
                     loading="lazy"
