@@ -1,33 +1,49 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, ButtonGroup } from 'react-bootstrap';
 
-import { VIEWS } from './viewCopy';
+import { viewsForData } from './viewCopy';
 
-function ViewToggle({ activeId, onChange }) {
-  const power = VIEWS.filter((v) => v.group === 'power');
-  const other = VIEWS.filter((v) => v.group === 'other');
+const GROUPS = [
+  { id: 'power', title: 'Power law' },
+  { id: 'other', title: 'Classic' },
+  { id: 'onchain', title: 'On-chain' },
+];
 
-  const renderGroup = (views) => (
-    <ButtonGroup className='indicator-toggle-group flex-wrap'>
-      {views.map((v) => (
-        <Button
-          key={v.id}
-          size='sm'
-          variant={activeId === v.id ? 'primary' : 'outline-secondary'}
-          onClick={() => onChange(v.id)}
-          type='button'
-        >
-          {v.label}
-        </Button>
-      ))}
-    </ButtonGroup>
-  );
+function ViewToggle({ activeId, onChange, data }) {
+  const views = viewsForData(data);
 
   return (
-    <div className='indicator-toggles mb-3'>
-      <div className='mb-2'>{renderGroup(power)}</div>
-      <div>{renderGroup(other)}</div>
+    <div className='indicator-toggles'>
+      {GROUPS.map((group) => {
+        const groupViews = views.filter((v) => v.group === group.id);
+        if (!groupViews.length) return null;
+        return (
+          <div key={group.id} className='indicator-toggle-section'>
+            <div className='indicator-toggle-heading'>{group.title}</div>
+            <div
+              className='indicator-toggle-grid'
+              role='tablist'
+              aria-label={group.title}
+            >
+              {groupViews.map((v) => {
+                const active = activeId === v.id;
+                return (
+                  <button
+                    key={v.id}
+                    type='button'
+                    role='tab'
+                    aria-selected={active}
+                    className={`indicator-toggle-btn${active ? ' is-active' : ''}`}
+                    onClick={() => onChange(v.id)}
+                  >
+                    {v.label}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -35,6 +51,11 @@ function ViewToggle({ activeId, onChange }) {
 ViewToggle.propTypes = {
   activeId: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  data: PropTypes.object,
+};
+
+ViewToggle.defaultProps = {
+  data: null,
 };
 
 export default ViewToggle;

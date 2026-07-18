@@ -7,6 +7,8 @@ import Header from '../components/Header/Header';
 import MetricsStrip from '../components/Indicator/MetricsStrip';
 import ViewToggle from '../components/Indicator/ViewToggle';
 import IndicatorChart from '../components/Indicator/IndicatorChart';
+import ViewExplainer from '../components/Indicator/ViewExplainer';
+import CompositeSignal from '../components/Indicator/CompositeSignal';
 import {
   INDICATOR_JSON_URL,
   INDICATOR_PNG_URL,
@@ -82,8 +84,9 @@ function Indicator() {
                 >
                   Medium
                 </a>
-                . Toggle other price-based cycle gauges below. Models recompute
-                daily around midnight UTC on my homelab.
+                . Toggle other price-based and free on-chain cycle gauges
+                below. Models recompute daily around midnight UTC on my
+                homelab.
               </p>
 
               {loading && (
@@ -95,15 +98,22 @@ function Indicator() {
 
               {!loading && data && (
                 <>
-                  <MetricsStrip latest={data.latest} />
-                  <ViewToggle activeId={viewId} onChange={setViewId} />
+                  <MetricsStrip
+                    latest={data.latest}
+                    onchainAvailable={Boolean(data.onchain?.available)}
+                  />
+                  <CompositeSignal latest={data.latest} onchain={data.onchain} />
+                  <ViewToggle activeId={viewId} onChange={setViewId} data={data} />
                   <IndicatorChart data={data} viewId={viewId} />
                   <p className='update-text'>
-                    As of {data.as_of} · updated {data.updated_at} · price-based
-                    models only (Cowen-style is an open recreation, not official
-                    ITC)
+                    As of {data.as_of} · updated {data.updated_at}
+                    {data.onchain?.available
+                      ? ` · on-chain via BGeometrics (from ${data.onchain.history_start})`
+                      : ' · on-chain unavailable this run'}
+                    {' · '}
+                    MA stretch is an open price-risk recreation (not official ITC)
                   </p>
-                  <p className='indicator-blurb'>{view.blurb}</p>
+                  <ViewExplainer view={view} />
                 </>
               )}
 

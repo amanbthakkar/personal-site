@@ -7,6 +7,8 @@ import {
   LogarithmicScale,
   PointElement,
   LineElement,
+  LineController,
+  ScatterController,
   Tooltip,
   Legend,
   Filler,
@@ -19,6 +21,8 @@ ChartJS.register(
   LogarithmicScale,
   PointElement,
   LineElement,
+  LineController,
+  ScatterController,
   Tooltip,
   Legend,
   Filler,
@@ -124,6 +128,7 @@ function IndicatorChart({ data, viewId }) {
       borderWidth: 1.5,
       pointRadius: 0,
       tension: 0.1,
+      spanGaps: true,
     });
 
     if (viewId === 'plo_residual') {
@@ -148,7 +153,7 @@ function IndicatorChart({ data, viewId }) {
         type: 'line',
         data: {
           labels,
-          datasets: [line('cowen_style_v2', 'Cowen-style risk', '#d35400')],
+          datasets: [line('cowen_style_v2', 'MA stretch risk', '#d35400')],
         },
         options: baseLineOptions('Risk (0–1)', 0, 1),
       };
@@ -158,6 +163,27 @@ function IndicatorChart({ data, viewId }) {
         type: 'line',
         data: { labels, datasets: [line('mayer', 'Mayer Multiple', '#2980b9')] },
         options: baseLineOptions('P / MA200'),
+      };
+    }
+    if (viewId === 'mvrv') {
+      return {
+        type: 'line',
+        data: { labels, datasets: [line('mvrv', 'MVRV', '#16a085')] },
+        options: baseLineOptions('MVRV ratio'),
+      };
+    }
+    if (viewId === 'mvrv_z') {
+      return {
+        type: 'line',
+        data: { labels, datasets: [line('mvrv_z', 'MVRV Z-score', '#1abc9c')] },
+        options: baseLineOptions('MVRV Z'),
+      };
+    }
+    if (viewId === 'nupl') {
+      return {
+        type: 'line',
+        data: { labels, datasets: [line('nupl', 'NUPL', '#27ae60')] },
+        options: baseLineOptions('NUPL'),
       };
     }
     if (viewId === 'corridor') {
